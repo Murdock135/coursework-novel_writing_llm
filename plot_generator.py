@@ -16,8 +16,9 @@ def load_text(file_path):
 
     return text
 
-def generate_novel_outline():
-    pass
+def generate_novel_outline() -> str:
+
+    return ""
 
 if __name__ == "__main__":
-    generate_novel_outline()
+    outline = generate_novel_outline()
