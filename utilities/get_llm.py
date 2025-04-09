@@ -1,10 +1,7 @@
-def get_llm(args):
-    model = args.model or "meta-llama/llama-4-maverick:free"
+def get_llm(provider, model):
+    model = model or "meta-llama/llama-4-maverick:free"
 
-    if args.openrouter and args.ollama:
-        raise ValueError("Please specify only one backend: --openrouter or --ollama. Not both.")
-
-    if args.openrouter:
+    if provider == openrouter:
         api_key = os.getenv("OPENROUTER_API_KEY")
         base_url = os.getenv("OPENROUTER_BASE_URL")
         breakpoint()        
@@ -14,5 +11,5 @@ def get_llm(args):
                 model_name=str(model)
                 )
 
-    elif args.ollama:
+    elif provider == ollama:
         return ChatOllama(model="gemma3:12b")  
