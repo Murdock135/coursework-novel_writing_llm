@@ -20,3 +20,7 @@ def get_llm(provider="openrouter", model="meta-llama/llama-4-maverick:free"):
         return ChatOllama(model=model)
         # return init_chat_model(
 
+if __name__ == "__main__":
+    llm = get_llm()
+    response = llm.content
+    print(response)
