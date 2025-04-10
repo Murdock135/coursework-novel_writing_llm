@@ -13,3 +13,6 @@ def get_llm(provider, model):
 
     elif provider == ollama:
         return ChatOllama(model="gemma3:12b")  
+
+if __name__ == "__main__":
+    pass
