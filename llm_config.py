@@ -20,7 +20,17 @@ def get_llm(provider="openrouter", model="meta-llama/llama-4-maverick:free"):
         )
     else:
         return ChatOllama(model=model)
-        # return init_chat_model(
+    
+# def get_llm_backend(args):
+    # """Parse CLI args and return LLM provider and model names"""
+
+    # provider = args.backend
+
+    # if args.backend == 'openrouter':
+    #     model= ''
+    # elif args.backend == 'ollama':
+    #     model = ''
+    # return provider, model
 
 if __name__ == "__main__":
     load_env_vars()
