@@ -1,5 +1,7 @@
 import os
-from langchain_community.chat_models import ChatOllama, ChatOpenAI
+from langchain_community.chat_models import ChatOllama
+from langchain_openai import ChatOpenAI
+from load_env import load_env_vars
 
 def get_llm(provider="openrouter", model="meta-llama/llama-4-maverick:free"):
     provider = provider.lower()
@@ -21,6 +23,7 @@ def get_llm(provider="openrouter", model="meta-llama/llama-4-maverick:free"):
         # return init_chat_model(
 
 if __name__ == "__main__":
+    load_env_vars()
     llm = get_llm()
-    response = llm.content
+    response = llm.invoke("Hi there. What model are you?").content
     print(response)
