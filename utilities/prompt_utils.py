@@ -1,26 +1,22 @@
 from typing import Dict, Any, Union, List
 from langchain_core.prompts import ChatPromptTemplate
 
-def create_prompt_template(prompt_text: str, novel_metadata: Dict[str, Any], user_message: str, var_name: str):
+def create_prompt_template(prompt_text: str, novel_metadata: Dict[str, Any], user_message: str):
     """
     Creates a standardized prompt template for various LLM tasks.
     
     Args:
         prompt_text: The system prompt text
         novel_metadata: Novel metadata dictionary
-        user_message: Template for the user message with a placeholder
-        var_name: The variable name to be used in the placeholder
+        user_message: Template for the user message (with variable already included)
         
     Returns:
         Configured ChatPromptTemplate
     """
-    # Build the user message with the appropriate variable placeholder
-    user_template = user_message.format(var_placeholder=f"{{{var_name}}}")
-    
     # Create the prompt template with system and user messages
     return ChatPromptTemplate.from_messages([
         ("system", prompt_text),
-        ("user", user_template)
+        ("user", user_message)
     ]).partial(
         genre=novel_metadata.get('genre'),
         tone=novel_metadata.get('tone'),

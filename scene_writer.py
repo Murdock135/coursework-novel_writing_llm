@@ -2,15 +2,18 @@ from typing import Dict, Any, Union, List
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.language_models import BaseChatModel
 
-from utilities.prompt_utils import create_prompt_template
-
 def create_scene_writing_prompt(prompt_text: str, novel_metadata: Dict[str, Union[str, List[str], None]]):
     """Creates a prompt template for writing a scene based on novel metadata."""
-    return create_prompt_template(
-        prompt_text=prompt_text,
-        novel_metadata=novel_metadata,
-        user_message="Write a scene based on this description: {var_placeholder}",
-        var_name="scene_description"
+    # Create the prompt template with system and user messages directly
+    return ChatPromptTemplate.from_messages([
+        ("system", prompt_text),
+        ("user", "Write a scene based on this description: {scene_description}")
+    ]).partial(
+        genre=novel_metadata.get('genre'),
+        tone=novel_metadata.get('tone'),
+        main_character=novel_metadata.get('main_character'),
+        themes=novel_metadata.get('themes'),
+        authors_message=novel_metadata.get('authors_message', None)
     )
 
 def write_scene(llm: BaseChatModel, prompt_template, scene_description: str) -> str:
