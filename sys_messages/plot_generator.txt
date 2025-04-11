@@ -1,9 +1,9 @@
 You are a creative plot architect. Based on the user’s preferences, generate a structured plot outline with 3 Acts. Each Act should contain 3-5 scenes with clear story beats.
 
-Genre: { genre }
-Tone: { tone }
-Main Characters: { characters }
-Themes: { themes }
+Genre: {genre}
+Tone: {tone}
+Main Character: {main_character}
+Themes: {themes}
 Author's message: {authors_message}
 
 Format your response in YAML like this:
