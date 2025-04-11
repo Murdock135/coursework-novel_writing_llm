@@ -33,10 +33,3 @@ class Config:
             "authors_message": self.authors_message
         }
 
-    def get_output_paths(self):
-        return {
-            "plot_outline_path": self.plot_outline_path,
-            "scene_summaries_path": self.scene_summaries_path,
-            "scenes_path": self.scenes_path,
-            "character_sheet_path": self.character_sheet_path
-        }
