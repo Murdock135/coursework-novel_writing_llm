@@ -33,31 +33,7 @@ def generate_outline(
     
     return outline, novel_metadata
 
-def prepare_prompts(
-    config: Config, 
-    novel_metadata: Dict[str, Union[str, List[str], None]]
-) -> Tuple[str, str]:
-    """Prepare the prompts for scene writing and summarization."""
-    # Create scene writing prompt
-    scene_prompt_path = os.path.join(config.path_to_prompts, 'scene_writer.txt')
-    scene_prompt_raw_text = load_text(scene_prompt_path)
-    scene_prompt = create_scene_writing_prompt(scene_prompt_raw_text, novel_metadata)
-    
-    # Create summary generation prompt
-    summary_prompt_path = os.path.join(config.path_to_prompts, 'scene_summary_generator.txt')
-    summary_prompt_raw_text = load_text(summary_prompt_path)
-    summary_prompt = create_summary_generation_prompt(summary_prompt_raw_text, novel_metadata)
-    
-    return scene_prompt, summary_prompt
 
-def create_output_directories(config: Config) -> Tuple[str, str]:
-    """Create the necessary directories for output files."""
-    # Paths are created by save_scene_to_file and save_summary_to_file
-    # We just return the paths here
-    scenes_dir = os.path.join(config.project_dir, config.scenes_path)
-    summaries_dir = os.path.join(config.project_dir, config.scene_summaries_path)
-    
-    return scenes_dir, summaries_dir
 
 def process_scene(
     act_index: int, 
@@ -116,7 +92,9 @@ def process_scene(
 def run_novel_pipeline(
     scene_llm: Any, 
     summary_llm: Any, 
-    config: Config, 
+    config: Config,
+    scene_prompt,
+    summary_prompt,
     outline_only: bool = False
 ) -> Tuple[NovelOutline, StatsTracker]:
     """Run the complete novel writing pipeline."""
@@ -138,9 +116,9 @@ def run_novel_pipeline(
     # Start writing individual scenes
     print("Starting to write individual scenes...")
     
-    # Prepare prompts and directories
-    scene_prompt, summary_prompt = prepare_prompts(config, novel_metadata)
-    scenes_dir, summaries_dir = create_output_directories(config)
+    # Get output directories from config
+    scenes_dir = config.get_scenes_dir()
+    summaries_dir = config.get_summaries_dir()
     
     # Loop through each act and scene to write content
     scene_count = 0

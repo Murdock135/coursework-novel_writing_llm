@@ -46,14 +46,12 @@ def save_content_to_file(content: str, act_num: int, scene_num: int, output_dir:
         content: The text content to save
         act_num: Act number
         scene_num: Scene number
-        output_dir: Directory path to save the file
+        output_dir: Directory path to save the file (must already exist)
         is_summary: Whether this is a scene summary
     
     Returns:
         The path to the saved file
     """
-    os.makedirs(output_dir, exist_ok=True)
-    
     file_path = get_scene_path(act_num, scene_num, output_dir, is_summary)
     
     with open(file_path, 'w') as f:

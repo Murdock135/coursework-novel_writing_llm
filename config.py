@@ -4,6 +4,8 @@ class Config:
     project_dir = os.path.dirname(__file__)
     path_to_prompts = os.path.join(os.path.abspath(project_dir), 'sys_messages')
     plot_generator_prompt = os.path.join(path_to_prompts, 'plot_generator.txt')
+    scene_writer_prompt = os.path.join(path_to_prompts, 'scene_writer.txt')
+    scene_summary_generator_prompt = os.path.join(path_to_prompts, 'scene_summary_generator.txt')
     
     # path to story description
     story_description = "data/story.txt"
@@ -32,4 +34,16 @@ class Config:
             "themes": self.themes,
             "authors_message": self.authors_message
         }
+    
+    def get_scenes_dir(self):
+        """Get the full path to the scenes directory and ensure it exists."""
+        scenes_dir = os.path.join(self.project_dir, self.scenes_path)
+        os.makedirs(scenes_dir, exist_ok=True)
+        return scenes_dir
+    
+    def get_summaries_dir(self):
+        """Get the full path to the scene summaries directory and ensure it exists."""
+        summaries_dir = os.path.join(self.project_dir, self.scene_summaries_path)
+        os.makedirs(summaries_dir, exist_ok=True)
+        return summaries_dir
 
