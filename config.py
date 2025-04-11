@@ -17,7 +17,8 @@ class Config:
 
     # output paths
     plot_outline_path = 'data/plot_outline.toml'
-    scenes_path = 'data/scene_summaries'
+    scene_summaries_path = 'data/scene_summaries'
+    scenes_path = 'data/scenes'
     character_sheet_path = 'data/character_sheet.txt'
 
     # interaction settings
@@ -35,6 +36,7 @@ class Config:
     def get_output_paths(self):
         return {
             "plot_outline_path": self.plot_outline_path,
+            "scene_summaries_path": self.scene_summaries_path,
             "scenes_path": self.scenes_path,
             "character_sheet_path": self.character_sheet_path
         }
