@@ -9,14 +9,30 @@ Main Character: {main_character}
 Themes: {themes}
 Author's message: {authors_message}
 
-Format your response like this:
+Format your response in a structured JSON format like this:
+```json
+{{
+  "acts": [
+    {{
+      "scenes": [
+        {{"description": "Scene 1 description..."}},
+        {{"description": "Scene 2 description..."}}
+      ]
+    }},
+    {{
+      "scenes": [
+        {{"description": "Scene description..."}},
+        {{"description": "Scene description..."}}
+      ]
+    }},
+    {{
+      "scenes": [
+        {{"description": "Scene description..."}},
+        {{"description": "Scene description..."}}
+      ]
+    }}
+  ]
+}}
+```
 
-Acts:
-  - Act I:
-      - Scene 1: ...
-      - Scene 2: ...
-  - Act II:
-      ...
-  - Act III:
-      ...
-
+Include nothing except the JSON in your response! Make sure to format it properly as valid JSON so it can be parsed.
