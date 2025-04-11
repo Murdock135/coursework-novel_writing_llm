@@ -1,4 +1,4 @@
-# from plot_generator import generate_novel_outline
+import os
 from llm_config import get_llm
 from load_env import load_env_vars
 import argparse
@@ -24,10 +24,14 @@ if __name__ == "__main__":
     # Novel metadata (genre, tone, etc)
     config = Config()
     novel_metadata: dict = config.get_novel_metadata()
-    breakpoint()
     
-    # Get user input
-    user_input = input("Describe the novel you want to write:\n")
+    
+    # Get story description
+    story_desc_path = os.path.join(config.project_dir, 'data', 'story.txt')
+    
+    with open(story_desc_path, 'r') as f:
+        story_desc = f.read()
+    
 
     # Produce novel outline
     outliner_prompt_raw_text = load_text(config.plot_generator_prompt)
@@ -42,7 +46,6 @@ if __name__ == "__main__":
     )
     
     chain = outliner_prompt | llm
-    breakpoint()
-    response = chain.invoke({"user_input" : user_input}).content
-    print(response)
-    # outline = generate_novel_outline() 
+    
+    outline = chain.invoke({"user_input" : story_desc}).content
+    print(outline)

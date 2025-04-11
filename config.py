@@ -5,6 +5,9 @@ class Config:
     path_to_prompts = os.path.join(os.path.abspath(project_dir), 'sys_messages')
     plot_generator_prompt = os.path.join(path_to_prompts, 'plot_generator.txt')
     
+    # path to story description
+    story_description = "data/story.txt"
+
     # novel metadata
     genre = "historical fiction"
     tone = "gloomy and analytical"
