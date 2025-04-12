@@ -22,6 +22,11 @@ class Config:
     scene_summaries_path = 'data/scene_summaries'
     scenes_path = 'data/scenes'
     character_sheet_path = 'data/character_sheet.txt'
+    
+    # test output paths
+    test_path = 'data/test'
+    test_scenes_path = 'data/test/scenes'
+    test_summaries_path = 'data/test/summaries'
 
     # interaction settings
     use_interactive_decisions = False
