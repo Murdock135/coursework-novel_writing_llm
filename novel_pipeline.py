@@ -2,7 +2,7 @@ import os
 import time
 from typing import Dict, List, Union, Tuple, Optional, Any
 from output_schemas import NovelOutline
-from utilities.io import get_scene_path, load_text
+from utilities.io import get_scene_path, load_text, pretty_print_scene
 from outline_generator import generate_outline
 from scene_writer import write_scene
 from scene_summary_generator import generate_scene_summary
@@ -56,6 +56,10 @@ def process_scene(
         with open(scene_file_path, 'w') as f:
             f.write(scene_content)
         print(f"Saved scene to {scene_file_path}")
+        
+        # Pretty print the scene
+        pretty_print_scene(act_index, scene_index, scene_content)
+        
         print(f"LLM calls so far: {stats_tracker.llm_call_count}")
         
         # Generate summary (always overwrite existing files)

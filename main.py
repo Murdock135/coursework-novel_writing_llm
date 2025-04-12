@@ -4,7 +4,7 @@ from llm_config import get_llm
 from load_env import load_env_vars
 from config import Config
 from novel_pipeline import run_novel_pipeline
-from utilities.io import load_text
+from utilities.io import load_text, clear_directory
 from utilities.retrieval import SceneRetriever
 
 def parse_args():
@@ -57,17 +57,17 @@ if __name__ == "__main__":
         'summaries': config.get_summaries_dir()
     }
     
+    # Clear existing scenes and summaries before starting
+    if not args.outline_only:
+        print("Clearing existing scenes and summaries...")
+        clear_directory(output_paths['scenes'])
+        clear_directory(output_paths['summaries'])
+    
     # Initialize scene retriever if retrieval is enabled
     scene_retriever = None
     if not args.no_retrieval:
         print("Initializing scene retriever for semantic search...")
         scene_retriever = SceneRetriever(provider=args.provider, model_name=args.embedding_model)
-        
-        # Load any existing summaries if available
-        summaries_dir = output_paths['summaries']
-        if os.path.exists(summaries_dir) and os.listdir(summaries_dir):
-            print("Loading existing scene summaries...")
-            scene_retriever.load_summaries(summaries_dir)
     
     # Run the novel writing pipeline
     outline, stats = run_novel_pipeline(

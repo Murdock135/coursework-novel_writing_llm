@@ -1,4 +1,18 @@
 import os
+import glob
+
+def clear_directory(directory_path: str):
+    """
+    Delete all files in a directory without removing the directory itself.
+    
+    Args:
+        directory_path: Path to the directory to clear
+    """
+    if os.path.exists(directory_path):
+        files = glob.glob(os.path.join(directory_path, '*'))
+        for f in files:
+            if os.path.isfile(f):
+                os.remove(f)
 
 def load_text(file_path):
     """Loads text from a file."""
@@ -6,6 +20,31 @@ def load_text(file_path):
         text = f.read()
 
     return text
+
+def pretty_print_scene(act_num: int, scene_num: int, content: str):
+    """
+    Prints a scene with nice formatting.
+    
+    Args:
+        act_num: Act number
+        scene_num: Scene number
+        content: The scene content to print
+    """
+    width = 80
+    border = "=" * width
+    title = f" ACT {act_num}, SCENE {scene_num} "
+    padding = "=" * ((width - len(title)) // 2)
+    header = padding + title + padding
+    # Adjust header if width is odd
+    if len(header) < width:
+        header += "="
+    
+    print("\n" + border)
+    print(header)
+    print(border + "\n")
+    print(content)
+    print("\n" + border)
+    print(border + "\n")
 
 def get_scene_filename(act_num: int, scene_num: int, is_summary: bool = False) -> str:
     """

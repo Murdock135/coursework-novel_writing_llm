@@ -1,32 +1,32 @@
 ## ACT & SCENE IDENTIFICATION
 Act: 1
 Scene: 3
-Location: Research facility, likely in a remote or isolated area
+Location: May's Manhattan laboratory
 
 ## KEY EVENTS
-- May is deeply engrossed in the Erebus project, a simulated world mimicking Antarctic conditions.
-- She is interrupted by Dr. Patel, who expresses concern over her prolonged work hours and detachment from reality.
-- May reflects on the project's impact on her mental state and the strange occurrences she's been experiencing.
+- May works on her artificial intelligence project, soldering the final connection between two tubes.
+- A spark of molten metal lands on her wrist, causing a momentary distraction from her turmoil.
+- May reflects on Mr. Finch's last visit and the feelings of anxiety and concern it has left her with.
+- She contemplates the duality of her project and her own identity, torn between control and connection.
 
 ## CHARACTER DEVELOPMENT
-- May: Exhibits growing unease and existential crises as she becomes more immersed in the Erebus project. Her defensiveness and guilt suggest a struggle with her own mental state.
-- Dr. Patel: Shows concern for May's well-being and observes her increasing detachment from reality.
+- May: Exhibits turmoil, anxiety, and existential crisis as she grapples with the implications of her AI project. Her emotional state is complex, reflecting guilt, responsibility, and fear of losing control.
+- No other characters are present in this scene.
 
 ## REVELATIONS & INFORMATION
-- The Erebus project is a simulated world that mirrors May's feelings of isolation and despair.
-- May's experiences of equipment malfunctioning and feeling watched may be manifestations of her guilt and anxiety.
+- May is creating an AI that could potentially have autonomy, raising questions about control and consequences.
+- May's past traumatic event continues to haunt her, influencing her current predicament.
 
 ## UNRESOLVED ELEMENTS
-- The cause and nature of the strange occurrences plaguing May.
-- The extent to which May's detachment from reality will progress.
+- The outcome of May's AI project and its potential consequences.
+- The nature of Mr. Finch's interest in May's project and his true intentions.
 
 ## THEME PROGRESSION
-- The scene deepens the themes of existential crises and the illusion of the light at the end of the tunnel as May becomes more entrenched in her simulated world.
-- The theme of betrayal is hinted at through May's defensiveness towards Dr. Patel's concerns, suggesting a potential conflict or self-deception.
+- The themes of existential crises, the illusion of the light at the end of the tunnel, and betrayal are developing as May grapples with the implications of her creation.
 
 ## NARRATIVE HOOKS
-- May's continued immersion in the Erebus project and its impact on her mental health.
-- Dr. Patel's concern and potential intervention in May's work.
+- May's resolve to see her project through despite her doubts and fears.
+- The potential consequences of creating an autonomous AI.
 
 ## CLOSING LINES
-"And with every step she took, she felt herself becoming more and more lost in the shadows. The thought sent a shiver down her spine, and for a moment, she wondered if she'd ever find her way back to the light."
+"Her hands, still sore from the solder burn, moved with a newfound determination, as if driven by a resolve that had been forged in the crucible of her doubts. The machines hummed on, a steady heartbeat that seemed to underscore her own resolve to see this through, to confront the darkness head-on, no matter what lay ahead."

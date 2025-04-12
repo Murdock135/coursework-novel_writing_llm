@@ -1,35 +1,32 @@
 ## ACT & SCENE IDENTIFICATION
 Act: 1
-Scene: 1
-Location: London, England, 1955
+Scene: 3
+Location: May's laboratory in Manhattan
 
 ## KEY EVENTS
-- May arrives at a London train station and is collected by a driver in a black Austin Cambridge.
-- She is taken to the Ministry of Defence's research facility in Whitehall.
-- May is introduced to the Project Erebus team, an artificial intelligence development project.
-- She is informed that her expertise in stochastic processes and probability theory is required to overcome the project's challenges.
+- May works on the artificial intelligence project, soldering connections between vacuum tubes.
+- She reflects on the project's genesis and her patron Mr. Finch's promises.
+- May's doubts about the project's implications and the AI's potential autonomy grow.
+- Mr. Finch visits the laboratory, inquiring about progress and downplaying May's concerns.
 
 ## CHARACTER DEVELOPMENT
-- May: Initially portrayed as gloomy and isolated, May's curiosity and analytical mind are piqued by the mysterious project.
-- The driver: Polite but wary, indicating some uncertainty or concern about May.
-- The stern-faced woman: Represents the authoritative and secretive nature of the project.
+- May: Grappling with existential crises and doubts about her work, feeling isolated and uncertain about her role.
+- Mr. Finch: Revealed to be enigmatic and unsettling, with an unctuous concern that hides his true intentions.
 
 ## REVELATIONS & INFORMATION
-- Project Erebus is a pioneering artificial intelligence development project.
-- May's expertise is required to address the project's "existential questions."
+- May is creating an artificial intelligence that could potentially have autonomy and self-determination.
+- Mr. Finch's true motives and the project's implications are unclear.
 
 ## UNRESOLVED ELEMENTS
-- The specific challenges and "existential questions" faced by Project Erebus.
-- The true nature and implications of the project.
+- The extent of Mr. Finch's involvement and control over the project.
+- The potential consequences of creating an autonomous AI.
 
 ## THEME PROGRESSION
-- The theme of existential crises is introduced through May's character and the project's challenges.
-- The illusion of light at the end of the tunnel is hinted at through May's introspection on the search for meaning.
-- Betrayal is foreshadowed in the final lines, suggesting potential conflicts or revelations.
+- The themes of betrayal, existential crises, and the illusion of the light at the end of the tunnel are developing as May questions her work and Mr. Finch's intentions.
 
 ## NARRATIVE HOOKS
-- The mysterious and potentially ominous nature of Project Erebus.
-- May's involvement and her growing unease.
+- May's growing unease and defiance towards Mr. Finch.
+- The potential risks and consequences of the AI's autonomy.
 
 ## CLOSING LINES
-"Welcome to Erebus, Miss May," a voice said, as a figure emerged from the shadows. "We're glad you're here. We need your help to uncover the truth about the darkness we're creating." May's eyes locked onto his, a spark of unease igniting within her. Betrayal, it seemed, was a concept that could be applied to more than just human relationships.
+"May's gaze met his, a spark of defiance flaring within her. But she said nothing, merely returning to her work as Finch watched her, his presence a looming shadow that seemed to darken the already-dim laboratory. The machines hummed on, a steady heartbeat that seemed to underscore the sense of foreboding that had taken up residence within her."

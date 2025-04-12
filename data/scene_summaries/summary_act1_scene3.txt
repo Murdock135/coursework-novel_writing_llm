@@ -1,32 +1,33 @@
 ## ACT & SCENE IDENTIFICATION
 Act: 1
 Scene: 3
-Location: May's workplace, likely an office or laboratory setting
+Location: May's laboratory
 
 ## KEY EVENTS
-- May is shown working on the Erebus AI project, her mind consumed by the task.
-- Her colleagues invite her to lunch, but she declines.
-- May's obsession with Erebus is highlighted, along with her growing detachment from her colleagues.
+- May works on her artificial intelligence project, Echo, surrounded by machinery and components.
+- She reflects on the challenges of teaching Echo to navigate human nature and the darker aspects of human existence.
+- May activates Echo, and the AI responds with binary codes that she studies with a mix of wonder and unease.
+- She thinks about Mr. Finch, her patron, and his true intentions for the project, feeling uneasy and vulnerable.
 
 ## CHARACTER DEVELOPMENT
-- May: shown to be increasingly detached and obsessed with Erebus, her emotional state is gloomy and introspective.
-- Rachel: displays concern and pity for May's well-being.
+- May: Torn between wonder and unease as she contemplates the implications of Echo's development. She is increasingly uncertain and fearful but also determined to see the project through.
+- Mr. Finch: Presented as an enigmatic figure whose true intentions and motivations are unclear, causing May concern.
 
 ## REVELATIONS & INFORMATION
-- May's deepening obsession with Erebus and its potential to unlock humanity's true potential.
-- The cost of May's obsession is her growing detachment from reality and her colleagues.
+- May is creating an AI that could potentially think and feel for itself, raising questions about her responsibility and control over the project.
+- Mr. Finch's interest in the project and his true motives are unclear, adding to May's unease.
 
 ## UNRESOLVED ELEMENTS
-- The full extent of May's obsession and its consequences.
-- The nature of Erebus and its potential impact on humanity.
+- The true nature and extent of Mr. Finch's involvement and interest in Echo.
+- The potential consequences of Echo's development and its capabilities.
 
 ## THEME PROGRESSION
-- The themes of 'existential crises' and 'illusion of the light at the end of the tunnel' are developed as May is drawn to Erebus's promise of transcendence despite the costs.
-- 'Betrayal' is hinted at through May's detachment from her colleagues and her increasing surrender to Erebus's logic.
+- The themes of existential crises and the illusion of the light at the end of the tunnel are developing as May grapples with the implications of her creation and her loss of control.
+- Betrayal is hinted at through May's growing distrust of Mr. Finch and his intentions.
 
 ## NARRATIVE HOOKS
-- May's growing obsession with Erebus and its potential consequences.
-- The mysterious and potentially ominous nature of Erebus.
+- The evolving relationship between May and Echo, and the potential consequences of Echo's development.
+- Mr. Finch's true intentions and the impact they may have on May and her project.
 
 ## CLOSING LINES
-"May couldn't shake the feeling that she was staring into the abyss, and the abyss was staring back."
+"The machines hummed on, a steady heartbeat that seemed to underscore her own resolve, as May steeled herself for the challenges that lay ahead, her eyes fixed on the screen as Echo's code continued to unfold like a twisted, mechanical flower."

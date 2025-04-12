@@ -42,20 +42,14 @@ def main():
         'summaries': config.get_summaries_dir()
     }
     
+    # Clear existing scenes and summaries
+    from utilities.io import clear_directory
+    print("Clearing existing scenes and summaries...")
+    clear_directory(output_paths['scenes'])
+    clear_directory(output_paths['summaries'])
+    
     # Initialize scene retriever
     scene_retriever = SceneRetriever(provider=provider)
-    
-    # Load any existing summaries if directory exists and has files
-    summaries_dir = output_paths['summaries']
-    if os.path.exists(summaries_dir):
-        files = [f for f in os.listdir(summaries_dir) if f.startswith('summary_')]
-        if files:
-            print(f"Loading {len(files)} existing scene summaries for retrieval...")
-            scene_retriever.load_summaries(summaries_dir)
-        else:
-            print("No existing summaries found to load.")
-    else:
-        print("Summaries directory does not exist yet.")
     
     # Custom function to generate one act only
     def run_one_act_pipeline(
