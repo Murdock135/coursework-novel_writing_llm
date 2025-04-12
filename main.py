@@ -6,6 +6,11 @@ from utilities.io import load_text
 from config import Config
 from langchain_core.prompts import ChatPromptTemplate
 
+def novel_outline_generator(llm, prompt_path, save_path):
+    pass
+
+def scene_summarizer(llm, prompt, save_path):
+    pass 
 if __name__ == "__main__":
     # load environment variables
     load_env_vars()
