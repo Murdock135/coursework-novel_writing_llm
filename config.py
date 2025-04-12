@@ -6,6 +6,7 @@ class Config:
     plot_generator_prompt = os.path.join(path_to_prompts, 'plot_generator.txt')
     scene_writer_prompt = os.path.join(path_to_prompts, 'scene_writer.txt')
     scene_summary_generator_prompt = os.path.join(path_to_prompts, 'scene_summary_generator.txt')
+    diversity_assessor_prompt = os.path.join(path_to_prompts, 'scene_diversity_assessor.txt')
     
     # path to story description
     story_description = "data/story.txt"

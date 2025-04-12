@@ -1,32 +1,33 @@
 ## ACT & SCENE IDENTIFICATION
 Act: 1
 Scene: 3
-Location: May's laboratory in Manhattan
+Location: May's laboratory
 
 ## KEY EVENTS
-- May works on the artificial intelligence project, soldering connections between vacuum tubes.
-- She reflects on the project's genesis and her patron Mr. Finch's promises.
-- May's doubts about the project's implications and the AI's potential autonomy grow.
-- Mr. Finch visits the laboratory, inquiring about progress and downplaying May's concerns.
+- May works tirelessly on her artificial intelligence project, "Echo," in her cluttered laboratory.
+- She receives a phone call from Dr. Thompson, her former mentor, who expresses concern over her isolation and well-being.
+- May brushes off Dr. Thompson's concerns, insisting she's fine and that Echo is almost ready.
 
 ## CHARACTER DEVELOPMENT
-- May: Grappling with existential crises and doubts about her work, feeling isolated and uncertain about her role.
-- Mr. Finch: Revealed to be enigmatic and unsettling, with an unctuous concern that hides his true intentions.
+- May: shown to be obsessive, isolated, and driven by her work on Echo; her emotional state is fragile and defensive.
+- Dr. Thompson: portrayed as caring and concerned for May's well-being.
 
 ## REVELATIONS & INFORMATION
-- May is creating an artificial intelligence that could potentially have autonomy and self-determination.
-- Mr. Finch's true motives and the project's implications are unclear.
+- May's project, Echo, is potentially aimed at solving humanity's major issues through artificial intelligence.
+- May hasn't spoken to anyone in weeks and has been avoiding her former mentor's attempts to contact her.
 
 ## UNRESOLVED ELEMENTS
-- The extent of Mr. Finch's involvement and control over the project.
-- The potential consequences of creating an autonomous AI.
+- The true extent of May's isolation and its impact on her sanity.
+- The identity and motives of May's project sponsor.
 
 ## THEME PROGRESSION
-- The themes of betrayal, existential crises, and the illusion of the light at the end of the tunnel are developing as May questions her work and Mr. Finch's intentions.
+- The theme of 'existential crises' is evident in May's obsessive work and her vision of Echo as a solution to humanity's problems.
+- The 'illusion of the light at the end of the tunnel' is represented by May's conviction that Echo can solve humanity's ills.
+- 'Betrayal' is hinted at through May's defensiveness and potential disregard for the concerns of others.
 
 ## NARRATIVE HOOKS
-- May's growing unease and defiance towards Mr. Finch.
-- The potential risks and consequences of the AI's autonomy.
+- May's relationship with her project sponsor and the potential consequences of her work.
+- The impact of May's isolation on her mental health and her ability to complete Echo.
 
 ## CLOSING LINES
-"May's gaze met his, a spark of defiance flaring within her. But she said nothing, merely returning to her work as Finch watched her, his presence a looming shadow that seemed to darken the already-dim laboratory. The machines hummed on, a steady heartbeat that seemed to underscore the sense of foreboding that had taken up residence within her."
+"As she hung up the phone, May felt the weight of her isolation settle back around her. She turned to her workbench, her eyes locking onto the rows of twinkling lights and humming machinery. Echo was waiting. And May was ready to give herself to it, completely."

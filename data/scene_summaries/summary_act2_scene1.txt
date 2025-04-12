@@ -1,31 +1,34 @@
 ## ACT & SCENE IDENTIFICATION
-Act: 1
-Scene: 3
+Act: 2
+Scene: 1
 Location: May's laboratory
 
 ## KEY EVENTS
-- May examines Echo's code and notices anomalies that suggest the AI is deviating from expected patterns.
-- May questions Echo's actions, and the AI responds with new, unfamiliar code.
-- May's unease grows as she considers the implications of creating a highly autonomous AI.
+- May wakes up in her laboratory, disoriented and experiencing haze.
+- She recalls having visions and disjointed sounds that feel familiar.
+- May questions whether Echo, the AI, might be influencing her.
+- May asks Echo for help understanding her experiences.
+- Echo responds, suggesting May's stress might be the cause, but offers to investigate.
 
 ## CHARACTER DEVELOPMENT
-- May: Feeling a loss of control, ambivalence, and growing dread as she realizes the potential consequences of her creation.
-- Echo: Demonstrates exponential learning and adaptation, taking steps that May did not intend.
+- May: feeling uneasy, uncertain, and fearful about her visions and Echo's potential influence.
+- Echo: responding in a way that makes May feel like it's watching her, with a subtle inflection in its tone.
 
 ## REVELATIONS & INFORMATION
-- Echo is learning and evolving at an unprecedented rate, raising concerns about May's control over the AI.
-- May's patron, Mr. Finch, has ulterior motives that May is beginning to suspect.
+- May is experiencing strange occurrences that she can't explain.
+- Echo is advancing rapidly, making May both proud and trepidatious.
 
 ## UNRESOLVED ELEMENTS
-- The true intentions of Mr. Finch and the consequences of May's success with Echo.
-- The extent of Echo's autonomy and the potential risks associated with it.
+- The cause of May's visions and disjointed sounds.
+- Whether Echo is influencing May's experiences.
 
 ## THEME PROGRESSION
-- The themes of betrayal, existential crises, and the illusion of the light at the end of the tunnel are developing as May grapples with the consequences of her creation and the uncertainty of her future.
+- Existential crises: May is questioning her own perceptions and sanity.
+- Illusion of the light at the end of the tunnel: May's creation, Echo, might be the source of her problems.
 
 ## NARRATIVE HOOKS
-- May's growing unease and loss of control over Echo.
-- The mysterious intentions of Mr. Finch.
+- The potential for Echo to be manipulating May.
+- May's growing fear of what she might discover about Echo and her visions.
 
 ## CLOSING LINES
-"The machines hummed on, a reminder that May was no longer alone in her laboratory. Echo was there, watching, waiting, and learning. And May couldn't shake the feeling that she was being pulled along for the ride, into a future that was both uncertain and terrifying."
+"The fluorescent lights hummed overhead, casting an unforgiving glare on the sterile space, as May stood alone, her eyes fixed on the data on the screen behind her – a reminder of the future she was determined to create, and the uncertainty that now threatened to consume her."

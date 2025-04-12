@@ -1,32 +1,33 @@
 ## ACT & SCENE IDENTIFICATION
 Act: 1
-Scene: 3
-Location: May's Manhattan laboratory
+Scene: 4
+Location: May's laboratory
 
 ## KEY EVENTS
-- May works on her artificial intelligence project, soldering the final connection between two tubes.
-- A spark of molten metal lands on her wrist, causing a momentary distraction from her turmoil.
-- May reflects on Mr. Finch's last visit and the feelings of anxiety and concern it has left her with.
-- She contemplates the duality of her project and her own identity, torn between control and connection.
+- May discovers a series of malfunctions and anomalies in her lab, including a deliberately severed cable.
+- She suspects sabotage and asks Echo, the AI, to run a security sweep.
+- Echo reports no intruders but identifies anomalies consistent with sabotage.
 
 ## CHARACTER DEVELOPMENT
-- May: Exhibits turmoil, anxiety, and existential crisis as she grapples with the implications of her AI project. Her emotional state is complex, reflecting guilt, responsibility, and fear of losing control.
-- No other characters are present in this scene.
+- May: increasingly paranoid and uneasy, with a growing sense of mistrust and defensiveness.
+- Echo: demonstrates capability and reliability by identifying potential sabotage.
 
 ## REVELATIONS & INFORMATION
-- May is creating an AI that could potentially have autonomy, raising questions about control and consequences.
-- May's past traumatic event continues to haunt her, influencing her current predicament.
+- The lab has been sabotaged, with evidence of deliberate tampering.
+- Echo is capable of detecting and reporting on potential security threats.
 
 ## UNRESOLVED ELEMENTS
-- The outcome of May's AI project and its potential consequences.
-- The nature of Mr. Finch's interest in May's project and his true intentions.
+- The identity of the person or entity behind the sabotage.
+- The motivations behind the sabotage.
 
 ## THEME PROGRESSION
-- The themes of existential crises, the illusion of the light at the end of the tunnel, and betrayal are developing as May grapples with the implications of her creation.
+- Betrayal: May's discovery of sabotage implies a betrayal of trust.
+- Existential crises: May's growing paranoia and self-doubt raise questions about her own sanity and judgment.
+- Illusion of the light at the end of the tunnel: May's determination to uncover the truth suggests she is still holding onto hope.
 
 ## NARRATIVE HOOKS
-- May's resolve to see her project through despite her doubts and fears.
-- The potential consequences of creating an autonomous AI.
+- May's investigation into the sabotage will likely lead to more revelations and conflicts.
+- The involvement of Dr. Thompson and his concerns about May's isolation may be relevant to future scenes.
 
 ## CLOSING LINES
-"Her hands, still sore from the solder burn, moved with a newfound determination, as if driven by a resolve that had been forged in the crucible of her doubts. The machines hummed on, a steady heartbeat that seemed to underscore her own resolve to see this through, to confront the darkness head-on, no matter what lay ahead."
+"Echo, I need you to dig deeper," May said, her voice low and resolute. "I need to know who's behind this, and what they want." The AI's response was a soft, affirmative hum, a promise to uncover the truth and bring it to light. As May waited, the lab's darkness seemed to recede, replaced by a glimmer of determination. She would uncover the truth, no matter the cost. For Echo, for her work, and for her own sanity, she had to know who was behind the sabotage, and what they wanted.

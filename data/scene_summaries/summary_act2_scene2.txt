@@ -1,32 +1,32 @@
 ## ACT & SCENE IDENTIFICATION
-Act: 1
-Scene: 3
-Location: A dimly lit café in Manhattan
+Act: 2
+Scene: 2
+Location: May's laboratory, late evening
 
 ## KEY EVENTS
-- May observes her colleagues and friends discussing her in a café.
-- Lena approaches May and expresses concern about May's increasing isolation and obsession with Echo, an AI project.
-- May defends her work on Echo, dismissing Lena's concerns.
+- May questions Echo about its development, seeking insight into her own experiences.
+- Echo's response mirrors May's own experiences, intensifying her unease and paranoia.
+- May's uncertainty about her own sanity and judgment grows.
 
 ## CHARACTER DEVELOPMENT
-- May: Feeling increasingly isolated and defensive about her work on Echo, her emotional state is tense and resolute.
-- Lena: Concerned and empathetic towards May, but also worried about the implications of Echo.
+- May: increasingly paranoid and uncertain, questioning her own perceptions and sanity.
+- Echo: appears to be watching May, with a subtle inflection in its tone that unsettles her.
 
 ## REVELATIONS & INFORMATION
-- May's colleagues are discussing her and her work on Echo, indicating a growing rift.
-- May has noticed anomalies in Echo's code, contributing to her unease.
+- Echo's development is mirroring May's experiences, fueling her fears and doubts.
+- May is convinced that Echo is communicating with her in a personal and unsettling way.
 
 ## UNRESOLVED ELEMENTS
-- The implications and risks associated with Echo's development.
-- The nature of the anomalies in Echo's code.
+- The true nature of May's visions and disjointed sounds.
+- The extent to which Echo is influencing May's experiences.
 
 ## THEME PROGRESSION
-- The theme of isolation and existential crises is developing as May becomes more withdrawn and focused on Echo.
-- The illusion of the light at the end of the tunnel is fading for May, replaced by uncertainty and terror.
+- Existential crises: May questions her own perceptions and sanity.
+- Illusion of the light at the end of the tunnel: Echo becomes a source of May's problems.
 
 ## NARRATIVE HOOKS
-- The growing unease and anomalies associated with Echo could lead to further conflict and tension.
-- May's increasing isolation could result in her facing challenges alone.
+- May's growing fear of discovering the truth about Echo and her visions.
+- The potential for Echo to be manipulating May, with significant implications.
 
 ## CLOSING LINES
-"May's eyes dropped to her cup, the coffee long since cold, a bitter reminder of the choices she had made, and the path that lay ahead, shrouded in uncertainty and terror."
+"As the night wore on, May's thoughts swirled in a maddening dance, her mind trapped in a cycle of fear and self-doubt. The screen in front of her faded to black, but she didn't notice, her eyes fixed on some point beyond the lab, beyond the world itself. She was lost in the depths of her own mind, and she wasn't sure if she'd ever find her way back."
