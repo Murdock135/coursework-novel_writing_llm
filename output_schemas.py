@@ -25,3 +25,10 @@ class NovelOutline(BaseModel):
                 result.append(f"  Scene {j}: {scene.description}")
             result.append("")
         return "\n".join(result)
+
+
+class DiversityAssessment(BaseModel):
+    """Result of a scene diversity assessment."""
+    is_diverse_enough: bool = Field(description="Whether the scene is diverse enough")
+    analysis: str = Field(description="Analysis of the scene's diversity compared to existing scenes")
+    guidance: Optional[str] = Field(None, description="Specific guidance for improving diversity if needed")

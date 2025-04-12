@@ -1,12 +1,13 @@
 from typing import List, Dict, Any
 import os
+import random
 import numpy as np
 from langchain_community.vectorstores import FAISS
 from langchain_ollama import OllamaEmbeddings  # Updated import
 from langchain_core.documents import Document
 
 class SceneRetriever:
-    """Retrieves relevant previous scene summaries for context."""
+    """Retrieves relevant previous scene summaries for context with added diversity."""
     
     def __init__(self, provider: str = "ollama", model_name: str = None):
         """Initialize the retriever with the appropriate embedding model."""
@@ -61,13 +62,49 @@ class SceneRetriever:
         else:
             print("No valid summaries found to create vector store")
     
-    def get_relevant_context(self, scene_description: str, k: int = 3) -> str:
-        """Retrieve the k most relevant previous scene summaries."""
+    def get_relevant_context(self, scene_description: str, k: int = 3, diversity_factor: float = 0.5) -> str:
+        """Retrieve scene context with a mix of relevant and diverse (older/disjoint) contexts.
+        
+        Args:
+            scene_description: The description of the current scene to find relevant context for
+            k: Total number of context scenes to return
+            diversity_factor: Proportion of scenes that should be diverse rather than relevant
+                             (0.0 = all relevant, 1.0 = all diverse)
+        
+        Returns:
+            Formatted context string with a mix of relevant and diverse scenes
+        """
         if not self.vector_store or not self.summaries:
             return ""
+        
+        if len(self.summaries) <= k:
+            # Not enough summaries for diversity, just return all we have
+            relevant_docs = self.summaries
+        else:
+            # Calculate how many should be relevant vs diverse
+            relevant_count = max(1, int(k * (1 - diversity_factor)))
+            diverse_count = k - relevant_count
             
-        # Perform similarity search
-        relevant_docs = self.vector_store.similarity_search(scene_description, k=k)
+            # Get most relevant scenes based on similarity
+            relevant_docs = self.vector_store.similarity_search(scene_description, k=relevant_count)
+            
+            # Get IDs of scenes we already selected
+            selected_ids = [doc.metadata.get("file") for doc in relevant_docs]
+            
+            # Select diverse scenes (older or disjoint from current context)
+            potential_diverse_docs = [doc for doc in self.summaries 
+                                    if doc.metadata.get("file") not in selected_ids]
+            
+            if potential_diverse_docs and diverse_count > 0:
+                # Randomly select diverse scenes
+                diverse_docs = random.sample(potential_diverse_docs, 
+                                           min(diverse_count, len(potential_diverse_docs)))
+                
+                # Combine relevant and diverse scenes
+                relevant_docs.extend(diverse_docs)
+                
+                # Shuffle to prevent the model from identifying which are relevant vs diverse
+                random.shuffle(relevant_docs)
         
         # Format the context
         context_parts = []

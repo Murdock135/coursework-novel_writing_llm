@@ -20,36 +20,86 @@ def process_scene(
     summaries_dir: str, 
     stats_tracker: StatsTracker,
     novel_metadata: Dict[str, Any],
-    scene_retriever: Optional[Any] = None
+    scene_retriever: Optional[Any] = None,
+    diversity_assessor_llm: Optional[Any] = None,
+    diversity_assessor_prompt: Optional[str] = None,
+    max_retries: int = 3
 ) -> Optional[str]:
     """Process a single scene: generate content and summary.
     
     Returns:
         An error message if an error occurred, None otherwise.
     """
+    from scene_diversity_assessor import assess_scene_diversity, get_existing_scenes
+    
     # Create file paths
     scene_file_path = get_scene_path(act_index, scene_index, scenes_dir, is_summary=False)
     summary_file_path = get_scene_path(act_index, scene_index, summaries_dir, is_summary=True)
     
     try:
+        # Get existing scenes for diversity assessment
+        existing_scenes = []
+        if diversity_assessor_llm and diversity_assessor_prompt:
+            existing_scenes = get_existing_scenes(scenes_dir, act_index, scene_index)
+            print(f"Found {len(existing_scenes)} existing scenes for diversity assessment")
+        
         # Get relevant context from previous scenes if retriever is available
         relevant_context = None
         if scene_retriever is not None:
             print(f"Retrieving relevant context for Act {act_index}, Scene {scene_index}...")
-            relevant_context = scene_retriever.get_relevant_context(scene.description)
+            # Use diversity factor of 0.5 to mix relevant and diverse contexts
+            relevant_context = scene_retriever.get_relevant_context(scene.description, diversity_factor=0.5)
             if relevant_context:
-                print(f"Found relevant context from {relevant_context.count('Previous Scene')} scene(s)")
+                print(f"Found context from {relevant_context.count('Previous Scene')} scene(s)")
         
-        # Generate scene content (always overwrite existing files)
-        print(f"Generating scene content for Act {act_index}, Scene {scene_index}...")
-        scene_content = write_scene(
-            scene_llm, 
-            scene_prompt_text, 
-            scene.description, 
-            novel_metadata,
-            relevant_context
-        )
-        stats_tracker.increment_llm_calls()
+        # Scene generation with diversity assessment loop
+        retry_count = 0
+        diversity_guidance = None
+        is_diverse_enough = False
+        scene_content = None
+        
+        while (not is_diverse_enough) and (retry_count < max_retries):
+            # Generate scene content
+            retry_label = f" (Attempt {retry_count + 1}/{max_retries})" if retry_count > 0 else ""
+            print(f"Generating scene content for Act {act_index}, Scene {scene_index}{retry_label}...")
+            
+            scene_content = write_scene(
+                scene_llm, 
+                scene_prompt_text, 
+                scene.description, 
+                novel_metadata,
+                relevant_context,
+                diversity_guidance
+            )
+            stats_tracker.increment_llm_calls()
+            
+            # Check diversity if we have an assessor and existing scenes
+            if diversity_assessor_llm and diversity_assessor_prompt and existing_scenes:
+                print("Assessing scene diversity...")
+                
+                assessment = assess_scene_diversity(
+                    diversity_assessor_llm,
+                    diversity_assessor_prompt,
+                    scene_content,
+                    existing_scenes
+                )
+                stats_tracker.increment_llm_calls()
+                
+                is_diverse_enough = assessment.is_diverse_enough
+                if not is_diverse_enough and retry_count < max_retries - 1:
+                    print(f"Scene needs improvement: {assessment.guidance}")
+                    diversity_guidance = assessment.guidance
+                    retry_count += 1
+                else:
+                    if is_diverse_enough:
+                        print("Scene passed diversity assessment.")
+                    else:
+                        print(f"Used maximum retries ({max_retries}), proceeding with current scene.")
+                        is_diverse_enough = True  # Force exit from loop
+            else:
+                # No diversity assessment, assume scene is fine
+                is_diverse_enough = True
+        
         stats_tracker.increment_scenes()
         
         # Save scene to file
@@ -97,7 +147,8 @@ def run_novel_pipeline(
     prompts: Dict[str, str],
     output_paths: Dict[str, str],
     outline_only: bool = False,
-    scene_retriever: Optional[Any] = None
+    scene_retriever: Optional[Any] = None,
+    diversity_assessor_llm: Optional[Any] = None
 ) -> Tuple[NovelOutline, StatsTracker]:
     """Run the complete novel writing pipeline."""
     # Initialize stats tracker
@@ -140,10 +191,16 @@ def run_novel_pipeline(
             scene_count += 1
             print(f"Writing Act {act_index}, Scene {scene_index} ({scene_count} of {sum(len(act.scenes) for act in outline.acts)})...")
             
+            # Get the diversity assessor prompt if needed
+            diversity_assessor_prompt = None
+            if diversity_assessor_llm and 'diversity_assessor' in prompts:
+                diversity_assessor_prompt = prompts['diversity_assessor']
+            
             error = process_scene(
                 act_index, scene_index, scene, scene_writer_llm, summarizer_llm,
                 prompts['scene'], prompts['summary'], scenes_dir, summaries_dir, 
-                stats_tracker, novel_metadata, scene_retriever
+                stats_tracker, novel_metadata, scene_retriever,
+                diversity_assessor_llm, diversity_assessor_prompt
             )
     
     # Print statistics
