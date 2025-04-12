@@ -19,7 +19,8 @@ def process_scene(
     scenes_dir: str, 
     summaries_dir: str, 
     stats_tracker: StatsTracker,
-    novel_metadata: Dict[str, Any]
+    novel_metadata: Dict[str, Any],
+    scene_retriever: Optional[Any] = None
 ) -> Optional[str]:
     """Process a single scene: generate content and summary.
     
@@ -31,9 +32,23 @@ def process_scene(
     summary_file_path = get_scene_path(act_index, scene_index, summaries_dir, is_summary=True)
     
     try:
+        # Get relevant context from previous scenes if retriever is available
+        relevant_context = None
+        if scene_retriever is not None:
+            print(f"Retrieving relevant context for Act {act_index}, Scene {scene_index}...")
+            relevant_context = scene_retriever.get_relevant_context(scene.description)
+            if relevant_context:
+                print(f"Found relevant context from {relevant_context.count('Previous Scene')} scene(s)")
+        
         # Generate scene content (always overwrite existing files)
         print(f"Generating scene content for Act {act_index}, Scene {scene_index}...")
-        scene_content = write_scene(scene_llm, scene_prompt_text, scene.description, novel_metadata)
+        scene_content = write_scene(
+            scene_llm, 
+            scene_prompt_text, 
+            scene.description, 
+            novel_metadata,
+            relevant_context
+        )
         stats_tracker.increment_llm_calls()
         stats_tracker.increment_scenes()
         
@@ -55,6 +70,10 @@ def process_scene(
         print(f"Saved summary to {summary_file_path}")
         print(f"LLM calls so far: {stats_tracker.llm_call_count}")
         
+        # Update the retriever with the new summary if available
+        if scene_retriever is not None:
+            scene_retriever.load_summaries(summaries_dir)
+        
         # Add a small delay to avoid rate limiting
         time.sleep(2)
         
@@ -73,7 +92,8 @@ def run_novel_pipeline(
     summarizer_llm: Any,
     prompts: Dict[str, str],
     output_paths: Dict[str, str],
-    outline_only: bool = False
+    outline_only: bool = False,
+    scene_retriever: Optional[Any] = None
 ) -> Tuple[NovelOutline, StatsTracker]:
     """Run the complete novel writing pipeline."""
     # Initialize stats tracker
@@ -119,7 +139,7 @@ def run_novel_pipeline(
             error = process_scene(
                 act_index, scene_index, scene, scene_writer_llm, summarizer_llm,
                 prompts['scene'], prompts['summary'], scenes_dir, summaries_dir, 
-                stats_tracker, novel_metadata
+                stats_tracker, novel_metadata, scene_retriever
             )
     
     # Print statistics

@@ -1,5 +1,5 @@
 import os
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama  # Updated import
 from langchain_openai import ChatOpenAI
 from load_env import load_env_vars
 

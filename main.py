@@ -5,6 +5,7 @@ from load_env import load_env_vars
 from config import Config
 from novel_pipeline import run_novel_pipeline
 from utilities.io import load_text
+from utilities.retrieval import SceneRetriever
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -15,6 +16,8 @@ def parse_args():
     parser.add_argument('-m', '--model', default="meta-llama/llama-4-maverick:free")
     parser.add_argument('-s', '--summary-model', default="meta-llama/llama-4-maverick:free", help='Model to use for scene summarization')
     parser.add_argument('-o', '--outline-only', action='store_true', help='Generate only the outline without writing scenes')
+    parser.add_argument('-r', '--no-retrieval', action='store_true', help='Disable semantic retrieval of previous scene context')
+    parser.add_argument('-e', '--embedding-model', default=None, help='Model to use for embeddings (if using retrieval)')
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -54,6 +57,18 @@ if __name__ == "__main__":
         'summaries': config.get_summaries_dir()
     }
     
+    # Initialize scene retriever if retrieval is enabled
+    scene_retriever = None
+    if not args.no_retrieval:
+        print("Initializing scene retriever for semantic search...")
+        scene_retriever = SceneRetriever(provider=args.provider, model_name=args.embedding_model)
+        
+        # Load any existing summaries if available
+        summaries_dir = output_paths['summaries']
+        if os.path.exists(summaries_dir) and os.listdir(summaries_dir):
+            print("Loading existing scene summaries...")
+            scene_retriever.load_summaries(summaries_dir)
+    
     # Run the novel writing pipeline
     outline, stats = run_novel_pipeline(
         story_path=story_path,
@@ -63,5 +78,6 @@ if __name__ == "__main__":
         summarizer_llm=summary_llm,
         prompts=prompts,
         output_paths=output_paths,
-        outline_only=args.outline_only
+        outline_only=args.outline_only,
+        scene_retriever=scene_retriever
     )
