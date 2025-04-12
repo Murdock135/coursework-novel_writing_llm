@@ -192,7 +192,6 @@ def run_novel_pipeline(
             print(f"Writing Act {act_index}, Scene {scene_index} ({scene_count} of {sum(len(act.scenes) for act in outline.acts)})...")
             
             # Get the diversity assessor prompt if needed
-            diversity_assessor_prompt = None
             if diversity_assessor_llm and 'diversity_assessor' in prompts:
                 diversity_assessor_prompt = prompts['diversity_assessor']
             
