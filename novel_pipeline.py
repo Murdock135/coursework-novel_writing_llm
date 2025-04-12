@@ -4,8 +4,8 @@ from typing import Dict, List, Union, Tuple, Optional, Any
 from output_schemas import NovelOutline
 from utilities.io import get_scene_path, load_text
 from outline_generator import generate_outline
-from scene_writer import write_scene, save_scene_to_file
-from scene_summary_generator import generate_scene_summary, save_summary_to_file
+from scene_writer import write_scene
+from scene_summary_generator import generate_scene_summary
 from stats_tracker import StatsTracker
 
 def process_scene(
@@ -38,7 +38,8 @@ def process_scene(
         stats_tracker.increment_scenes()
         
         # Save scene to file
-        save_scene_to_file(scene_content, act_index, scene_index, scenes_dir)
+        with open(scene_file_path, 'w') as f:
+            f.write(scene_content)
         print(f"Saved scene to {scene_file_path}")
         print(f"LLM calls so far: {stats_tracker.llm_call_count}")
         
@@ -49,7 +50,8 @@ def process_scene(
         stats_tracker.increment_summaries()
         
         # Save summary to file
-        save_summary_to_file(scene_summary, act_index, scene_index, summaries_dir)
+        with open(summary_file_path, 'w') as f:
+            f.write(scene_summary)
         print(f"Saved summary to {summary_file_path}")
         print(f"LLM calls so far: {stats_tracker.llm_call_count}")
         

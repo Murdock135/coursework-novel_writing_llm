@@ -20,7 +20,3 @@ def write_scene(llm: BaseChatModel, prompt_text: str, scene_description: str, no
     chain = prompt | llm
     return chain.invoke({"scene_description": scene_description}).content
 
-def save_scene_to_file(scene_content: str, act_num: int, scene_num: int, output_dir: str) -> str:
-    """Saves a scene to a file and returns the file path."""
-    from utilities.io import save_content_to_file
-    return save_content_to_file(scene_content, act_num, scene_num, output_dir, is_summary=False)

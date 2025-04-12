@@ -20,7 +20,3 @@ def generate_scene_summary(llm: BaseChatModel, prompt_text: str, scene_content: 
     chain = prompt | llm
     return chain.invoke({"scene_content": scene_content}).content
 
-def save_summary_to_file(summary_content: str, act_num: int, scene_num: int, output_dir: str) -> str:
-    """Saves a scene summary to a file and returns the file path."""
-    from utilities.io import save_content_to_file
-    return save_content_to_file(summary_content, act_num, scene_num, output_dir, is_summary=True)
