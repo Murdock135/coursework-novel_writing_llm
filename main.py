@@ -56,12 +56,12 @@ if __name__ == "__main__":
     
     # Run the novel writing pipeline
     outline, stats = run_novel_pipeline(
-        story_path,
-        novel_metadata,
-        scene_llm,  # Using same LLM for outline generation
-        scene_llm, 
-        summary_llm,
-        prompts,
-        output_paths,
-        args.outline_only
+        story_path=story_path,
+        novel_metadata=novel_metadata,
+        outliner_llm=scene_llm,  # Using same LLM for outline generation
+        scene_writer_llm=scene_llm, 
+        summarizer_llm=summary_llm,
+        prompts=prompts,
+        output_paths=output_paths,
+        outline_only=args.outline_only
     )
