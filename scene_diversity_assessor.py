@@ -1,4 +1,3 @@
-from config import Config
 from langchain_core.prompts import ChatPromptTemplate
 from output_schemas import DiversityAssessment
 from langchain_core.output_parsers import PydanticOutputParser
@@ -17,9 +16,9 @@ def assess_diversity(current_scene, samples, llm, prompt, output_schema):
                      past_scenes=samples
                      )
    
-   chain = prompt | llm | parser
-   response = chain.invoke({'current_scene':current_scene})
-   return response
+    chain = prompt | llm | parser
+    response: DiversityAssessment = chain.invoke({'current_scene':current_scene})
+    return response
 
 def sample_text(filepath, sample_size=5):
     with open(filepath, 'r', encoding='utf-8') as f:

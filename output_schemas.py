@@ -1,7 +1,6 @@
 from typing import List, Dict, Optional
 from pydantic import BaseModel, Field
 
-
 class Scene(BaseModel):
     """Represents a single scene in an act of the novel."""
     description: str = Field(description="Description of what happens in the scene")
