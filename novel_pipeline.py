@@ -2,38 +2,11 @@ import os
 import time
 from typing import Dict, List, Union, Tuple, Optional, Any
 from output_schemas import NovelOutline
-from utilities.io import load_text, get_scene_path
-from plot_generator import create_outliner_prompt, generate_novel_outline
-from scene_writer import create_scene_writing_prompt, write_scene, save_scene_to_file
-from scene_summary_generator import create_summary_generation_prompt, generate_scene_summary, save_summary_to_file
+from utilities.io import get_scene_path, load_text
+from outline_generator import generate_outline
+from scene_writer import write_scene, save_scene_to_file
+from scene_summary_generator import generate_scene_summary, save_summary_to_file
 from stats_tracker import StatsTracker
-from config import Config
-
-def generate_outline(
-    llm: Any, 
-    config: Config, 
-    stats_tracker: StatsTracker
-) -> Tuple[NovelOutline, Dict[str, Union[str, List[str], None]]]:
-    """Generate the novel outline and return it along with the novel metadata."""
-    novel_metadata = config.get_novel_metadata()
-    
-    # Get story description from config
-    story_desc_path = os.path.join(config.project_dir, config.story_description)
-    story_desc = load_text(story_desc_path)
-    
-    # Create prompt template
-    outliner_prompt_raw_text = load_text(config.plot_generator_prompt)
-    outliner_prompt = create_outliner_prompt(outliner_prompt_raw_text, novel_metadata)
-    
-    # Generate novel outline as structured data
-    outline = generate_novel_outline(llm, outliner_prompt, story_desc)
-    
-    # Increment LLM call counter
-    stats_tracker.increment_llm_calls()
-    
-    return outline, novel_metadata
-
-
 
 def process_scene(
     act_index: int, 
@@ -41,11 +14,12 @@ def process_scene(
     scene: Any,
     scene_llm: Any, 
     summary_llm: Any, 
-    scene_prompt: str, 
-    summary_prompt: str,
+    scene_prompt_text: str, 
+    summary_prompt_text: str,
     scenes_dir: str, 
     summaries_dir: str, 
-    stats_tracker: StatsTracker
+    stats_tracker: StatsTracker,
+    novel_metadata: Dict[str, Any]
 ) -> Optional[str]:
     """Process a single scene: generate content and summary.
     
@@ -59,7 +33,7 @@ def process_scene(
     try:
         # Generate scene content (always overwrite existing files)
         print(f"Generating scene content for Act {act_index}, Scene {scene_index}...")
-        scene_content = write_scene(scene_llm, scene_prompt, scene.description)
+        scene_content = write_scene(scene_llm, scene_prompt_text, scene.description, novel_metadata)
         stats_tracker.increment_llm_calls()
         stats_tracker.increment_scenes()
         
@@ -70,7 +44,7 @@ def process_scene(
         
         # Generate summary (always overwrite existing files)
         print(f"Generating summary for Act {act_index}, Scene {scene_index}...")
-        scene_summary = generate_scene_summary(summary_llm, summary_prompt, scene_content)
+        scene_summary = generate_scene_summary(summary_llm, summary_prompt_text, scene_content, novel_metadata)
         stats_tracker.increment_llm_calls()
         stats_tracker.increment_summaries()
         
@@ -90,11 +64,13 @@ def process_scene(
         return error_msg
 
 def run_novel_pipeline(
-    scene_llm: Any, 
-    summary_llm: Any, 
-    config: Config,
-    scene_prompt,
-    summary_prompt,
+    story_path: str,
+    novel_metadata: Dict[str, Any],
+    outliner_llm: Any,
+    scene_writer_llm: Any,
+    summarizer_llm: Any,
+    prompts: Dict[str, str],
+    output_paths: Dict[str, str],
     outline_only: bool = False
 ) -> Tuple[NovelOutline, StatsTracker]:
     """Run the complete novel writing pipeline."""
@@ -102,7 +78,13 @@ def run_novel_pipeline(
     stats_tracker = StatsTracker()
     
     # Generate outline
-    outline, novel_metadata = generate_outline(scene_llm, config, stats_tracker)
+    outline = generate_outline(
+        outliner_llm, 
+        prompts['plot'], 
+        story_path,
+        novel_metadata,
+        stats_tracker
+    )
     
     # Print outline in a readable format
     print(outline.format_readable())
@@ -116,9 +98,13 @@ def run_novel_pipeline(
     # Start writing individual scenes
     print("Starting to write individual scenes...")
     
-    # Get output directories from config
-    scenes_dir = config.get_scenes_dir()
-    summaries_dir = config.get_summaries_dir()
+    # Get output directories
+    scenes_dir = output_paths['scenes']
+    summaries_dir = output_paths['summaries']
+    
+    # Ensure output directories exist
+    os.makedirs(scenes_dir, exist_ok=True)
+    os.makedirs(summaries_dir, exist_ok=True)
     
     # Loop through each act and scene to write content
     scene_count = 0
@@ -129,8 +115,9 @@ def run_novel_pipeline(
             print(f"Writing Act {act_index}, Scene {scene_index} ({scene_count} of {sum(len(act.scenes) for act in outline.acts)})...")
             
             error = process_scene(
-                act_index, scene_index, scene, scene_llm, summary_llm,
-                scene_prompt, summary_prompt, scenes_dir, summaries_dir, stats_tracker
+                act_index, scene_index, scene, scene_writer_llm, summarizer_llm,
+                prompts['scene'], prompts['summary'], scenes_dir, summaries_dir, 
+                stats_tracker, novel_metadata
             )
     
     # Print statistics

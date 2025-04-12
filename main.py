@@ -1,11 +1,10 @@
 import argparse
+import os
 from llm_config import get_llm
 from load_env import load_env_vars
 from config import Config
 from novel_pipeline import run_novel_pipeline
 from utilities.io import load_text
-from scene_writer import create_scene_writing_prompt
-from scene_summary_generator import create_summary_generation_prompt
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -35,20 +34,34 @@ if __name__ == "__main__":
     # Get novel metadata
     novel_metadata = config.get_novel_metadata()
     
-    # Create scene writing prompt
-    scene_prompt_raw_text = load_text(config.scene_writer_prompt)
-    scene_prompt = create_scene_writing_prompt(scene_prompt_raw_text, novel_metadata)
+    # Load prompt text
+    scene_prompt_text = load_text(config.scene_writer_prompt)
+    summary_prompt_text = load_text(config.scene_summary_generator_prompt)
     
-    # Create summary generation prompt
-    summary_prompt_raw_text = load_text(config.scene_summary_generator_prompt)
-    summary_prompt = create_summary_generation_prompt(summary_prompt_raw_text, novel_metadata)
+    # Prepare the story path
+    story_path = os.path.join(config.project_dir, config.story_description)
+    
+    # Prepare prompts dictionary
+    prompts = {
+        'plot': config.plot_generator_prompt,
+        'scene': scene_prompt_text,
+        'summary': summary_prompt_text
+    }
+    
+    # Prepare output paths dictionary
+    output_paths = {
+        'scenes': config.get_scenes_dir(),
+        'summaries': config.get_summaries_dir()
+    }
     
     # Run the novel writing pipeline
     outline, stats = run_novel_pipeline(
+        story_path,
+        novel_metadata,
+        scene_llm,  # Using same LLM for outline generation
         scene_llm, 
-        summary_llm, 
-        config, 
-        scene_prompt, 
-        summary_prompt, 
+        summary_llm,
+        prompts,
+        output_paths,
         args.outline_only
     )

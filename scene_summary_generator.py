@@ -2,10 +2,10 @@ from typing import Dict, Any, Union, List
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.language_models import BaseChatModel
 
-def create_summary_generation_prompt(prompt_text: str, novel_metadata: Dict[str, Union[str, List[str], None]]):
-    """Creates a prompt template for summarizing written scenes based on novel metadata."""
+def generate_scene_summary(llm: BaseChatModel, prompt_text: str, scene_content: str, novel_metadata: Dict[str, Union[str, List[str], None]]) -> str:
+    """Generates a summary of a written scene using the LLM."""
     # Create the prompt template with system and user messages directly
-    return ChatPromptTemplate.from_messages([
+    prompt = ChatPromptTemplate.from_messages([
         ("system", prompt_text),
         ("user", "Create a concise summary of this written scene: {scene_content}")
     ]).partial(
@@ -15,10 +15,9 @@ def create_summary_generation_prompt(prompt_text: str, novel_metadata: Dict[str,
         themes=novel_metadata.get('themes'),
         authors_message=novel_metadata.get('authors_message', None)
     )
-
-def generate_scene_summary(llm: BaseChatModel, prompt_template, scene_content: str) -> str:
-    """Generates a summary of a written scene using the LLM."""
-    chain = prompt_template | llm
+    
+    # Execute the chain
+    chain = prompt | llm
     return chain.invoke({"scene_content": scene_content}).content
 
 def save_summary_to_file(summary_content: str, act_num: int, scene_num: int, output_dir: str) -> str:
