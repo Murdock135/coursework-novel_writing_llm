@@ -86,6 +86,9 @@ def run_novel_pipeline(
                 scene_content,
                 novel_metadata
             )
+            # Pretty print scene and scene summary
+            io.pretty_print(act_index, scene_index, scene_content)
+            io.pretty_print(act_index, scene_index, scene_summary, is_summary=True)
 
             # Save the scene and summary
             io.save_content_to_file(

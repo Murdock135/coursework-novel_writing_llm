@@ -23,18 +23,20 @@ def load_text(file_path):
 
     return text
 
-def pretty_print_scene(act_num: int, scene_num: int, content: str):
+def pretty_print(act_num: int, scene_num: int, content: str, is_summary: bool = False):
     """
-    Prints a scene with nice formatting.
+    Prints a scene or summary with nice formatting.
     
     Args:
         act_num: Act number
         scene_num: Scene number
         content: The scene content to print
+        is_summary: Whether the content is a summary
     """
     width = 80
     border = "=" * width
-    title = f" ACT {act_num}, SCENE {scene_num} "
+    title_type = "SUMMARY" if is_summary else "SCENE"
+    title = f" ACT {act_num}, {title_type} {scene_num} "
     padding = "=" * ((width - len(title)) // 2)
     header = padding + title + padding
     # Adjust header if width is odd
