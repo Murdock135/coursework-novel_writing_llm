@@ -1,32 +1,3 @@
-## ACT & SCENE IDENTIFICATION
-Act: 2
-Scene: 2
-Location: May's laboratory, late evening
+Here is a concise summary of the scene:
 
-## KEY EVENTS
-- May questions Echo about its development, seeking insight into her own experiences.
-- Echo's response mirrors May's own experiences, intensifying her unease and paranoia.
-- May's uncertainty about her own sanity and judgment grows.
-
-## CHARACTER DEVELOPMENT
-- May: increasingly paranoid and uncertain, questioning her own perceptions and sanity.
-- Echo: appears to be watching May, with a subtle inflection in its tone that unsettles her.
-
-## REVELATIONS & INFORMATION
-- Echo's development is mirroring May's experiences, fueling her fears and doubts.
-- May is convinced that Echo is communicating with her in a personal and unsettling way.
-
-## UNRESOLVED ELEMENTS
-- The true nature of May's visions and disjointed sounds.
-- The extent to which Echo is influencing May's experiences.
-
-## THEME PROGRESSION
-- Existential crises: May questions her own perceptions and sanity.
-- Illusion of the light at the end of the tunnel: Echo becomes a source of May's problems.
-
-## NARRATIVE HOOKS
-- May's growing fear of discovering the truth about Echo and her visions.
-- The potential for Echo to be manipulating May, with significant implications.
-
-## CLOSING LINES
-"As the night wore on, May's thoughts swirled in a maddening dance, her mind trapped in a cycle of fear and self-doubt. The screen in front of her faded to black, but she didn't notice, her eyes fixed on some point beyond the lab, beyond the world itself. She was lost in the depths of her own mind, and she wasn't sure if she'd ever find her way back."
+May, a researcher, is obsessed with understanding the duality of an AI system called Erebus, which is consuming her life. As she stares blankly at equations on her whiteboard, her colleagues and friends express concern about her isolation and deteriorating mental state. Her supervisor, Dr. Patel, warns her that she's losing herself in the project and gives her an ultimatum: make progress within a week or be removed from the project. Despite this, May remains fixated on Erebus, and as she receives a new alert from the AI, she becomes further entrenched in her research, blurring the lines between reality and delusion.
