@@ -1,11 +1,11 @@
 import argparse
 import os
+import subprocess
 from llm_config import get_llm
 from load_env import load_env_vars
 from config import Config
 from novel_pipeline import run_novel_pipeline
-from utilities.io import load_text, clear_directory
-from utilities.retrieval import SceneRetriever
+from utilities.io import clear_directory
 
 def parse_args():
     """Parse command line arguments."""
@@ -22,55 +22,38 @@ def parse_args():
     parser.add_argument('--no-diversity', action='store_true', help='Disable scene diversity assessment')
     return parser.parse_args()
 
-def load_prompts(config, diversity_assessor_enabled=True):
-    """Load system prompts for the language models."""
+def get_prompts_paths(config, diversity_assessor_enabled=True):
+    """Get paths to system prompts for the language models."""
     prompts = {
         'plot': config.plot_generator_prompt,
-        'scene': load_text(config.scene_writer_prompt),
-        'summary': load_text(config.scene_summary_generator_prompt)
+        'scene': config.scene_writer_prompt,
+        'summary': config.scene_summary_generator_prompt,
+        'assessor': config.diversity_assessor_prompt if diversity_assessor_enabled else None
     }
-    
-    # Add diversity assessor prompt if enabled
-    if diversity_assessor_enabled:
-        diversity_assessor_path = os.path.join(config.project_dir, "sys_messages/scene_diversity_assessor.txt")
-        if os.path.exists(diversity_assessor_path):
-            prompts['diversity_assessor'] = load_text(diversity_assessor_path)
-    
     return prompts
 
 def initialize_llms(args):
     """Initialize language models based on command line arguments."""
-    # Main LLMs for scene writing and summarization
+    outliner_llm = get_llm(args.provider, args.model)
     scene_llm = get_llm(args.provider, args.model)
     summary_llm = get_llm(args.provider, args.summary_model)
+    diversity_assessor_llm = get_llm(args.provider, args.model) if not args.no_diversity else None
     
-    # Diversity assessor LLM (using same model as scene writer)
-    diversity_assessor_llm = None
-    if not args.no_diversity:
-        diversity_assessor_llm = get_llm(args.provider, args.model)
-    
-    return scene_llm, summary_llm, diversity_assessor_llm
+    return outliner_llm, scene_llm, summary_llm, diversity_assessor_llm
 
-def initialize_retriever(args):
-    """Initialize the scene retriever if enabled."""
-    if args.no_retrieval:
-        return None
-    
-    print("Initializing scene retriever for semantic search...")
-    return SceneRetriever(provider=args.provider, model_name=args.embedding_model)
-
-def prepare_output_directories(config, outline_only):
+def prepare_output_directories(config):
     """Prepare output directories and clear existing content if needed."""
     output_paths = {
-        'scenes': config.get_scenes_dir(),
-        'summaries': config.get_summaries_dir()
+        'plot_outline': config.plot_outline_path,
+        'scenes': config.scenes_path,
+        'scene_summaries': config.scene_summaries_path,
+        'diversity_assessment': config.diversity_assessment_path,
     }
-    
-    # Clear existing scenes and summaries if generating full novel
-    if not outline_only:
-        print("Clearing existing scenes and summaries...")
-        clear_directory(output_paths['scenes'])
-        clear_directory(output_paths['summaries'])
+
+    # Clear existing scenes and summaries 
+    print("Clearing existing scenes and summaries...")
+    clear_directory(output_paths['scenes'])
+    clear_directory(output_paths['scene_summaries'])
     
     return output_paths
 
@@ -81,35 +64,42 @@ if __name__ == "__main__":
     # Parse command line arguments
     args = parse_args()
     
+    # If outline only, simply run novel outliner
+    if args.outline_only:
+        print("Outline-only mode specified. Running novel_outliner.py...")
+        subprocess.run([
+            "python3", 
+            "novel_outliner.py", 
+            "-p", args.provider, 
+            "-m", args.model
+        ])
+        exit(0)
+    
     # Initialize config
     config = Config()
-    
+
     # Initialize language models
-    scene_llm, summary_llm, diversity_assessor_llm = initialize_llms(args)
+    outliner_llm, scene_llm, summary_llm, diversity_assessor_llm = initialize_llms(args)
     
-    # Load system prompts
-    prompts = load_prompts(config, diversity_assessor_enabled=not args.no_diversity)
+    # Load system prompt paths
+    prompt_paths = get_prompts_paths(config, diversity_assessor_enabled=not args.no_diversity)
     
     # Get novel metadata
     novel_metadata = config.get_novel_metadata()
     
     # Prepare story path and output directories
-    story_path = os.path.join(config.project_dir, config.story_description)
-    output_paths = prepare_output_directories(config, args.outline_only)
+    story_path = config.story_description_path
+    output_paths = prepare_output_directories(config)
     
-    # Initialize scene retriever if enabled
-    scene_retriever = initialize_retriever(args)
-    
-    # Run the novel writing pipeline
-    outline, stats = run_novel_pipeline(
-        story_path=story_path,
+    # Run the novel pipeline
+    run_novel_pipeline(
+        story_description_path=story_path,
         novel_metadata=novel_metadata,
-        outliner_llm=scene_llm,  # Using same LLM for outline generation
-        scene_writer_llm=scene_llm, 
+        outliner_llm=scene_llm,
+        scene_writer_llm=scene_llm,
         summarizer_llm=summary_llm,
-        prompts=prompts,
-        output_paths=output_paths,
-        outline_only=args.outline_only,
-        scene_retriever=scene_retriever,
-        diversity_assessor_llm=diversity_assessor_llm
+        diversity_assessor_llm=diversity_assessor_llm,
+        prompt_paths_dict=prompt_paths, 
+        output_paths_dict=output_paths
     )
+

@@ -1,5 +1,7 @@
 import os
 import glob
+from typing import Dict, Any
+from langchain_core.documents import Document
 
 def clear_directory(directory_path: str):
     """
@@ -21,18 +23,20 @@ def load_text(file_path):
 
     return text
 
-def pretty_print_scene(act_num: int, scene_num: int, content: str):
+def pretty_print(act_num: int, scene_num: int, content: str, is_summary: bool = False):
     """
-    Prints a scene with nice formatting.
+    Prints a scene or summary with nice formatting.
     
     Args:
         act_num: Act number
         scene_num: Scene number
         content: The scene content to print
+        is_summary: Whether the content is a summary
     """
     width = 80
     border = "=" * width
-    title = f" ACT {act_num}, SCENE {scene_num} "
+    title_type = "SUMMARY" if is_summary else "SCENE"
+    title = f" ACT {act_num}, {title_type} {scene_num} "
     padding = "=" * ((width - len(title)) // 2)
     header = padding + title + padding
     # Adjust header if width is odd
@@ -97,3 +101,54 @@ def save_content_to_file(content: str, act_num: int, scene_num: int, output_dir:
         f.write(content)
     
     return file_path
+
+
+def load_summaries(summaries_dir: str) -> Dict[str, Document]:
+    """
+    Load all scene summaries from a directory into a dictionary.
+    
+    Args:
+        summaries_dir: Directory containing summary files
+        
+    Returns:
+        Dictionary mapping scene keys (act_scene) to Document objects containing summaries
+    """
+    summaries = {}
+    
+    # Check if directory exists
+    if not os.path.exists(summaries_dir):
+        print(f"Warning: Directory {summaries_dir} does not exist.")
+        return summaries
+        
+    # Get all summary files
+    summary_files = [f for f in os.listdir(summaries_dir) if f.startswith("summary_")]
+    if not summary_files:
+        print(f"Warning: No summary files found in {summaries_dir}")
+        return summaries
+        
+    # Process each summary file
+    for filename in summary_files:
+        file_path = os.path.join(summaries_dir, filename)
+        try:
+            with open(file_path, 'r') as f:
+                content = f.read()
+                
+                # Extract metadata from filename
+                parts = filename.replace("summary_", "").replace(".txt", "").split("_")
+                if len(parts) >= 2:
+                    act = parts[0]
+                    scene = parts[1]
+                    
+                    # Create key for the dictionary
+                    key = f"{act}_{scene}"
+                    
+                    # Add to summaries with metadata
+                    summaries[key] = Document(
+                        page_content=content,
+                        metadata={"file": filename, "act": act, "scene": scene}
+                    )
+        except Exception as e:
+            print(f"Error reading {file_path}: {str(e)}")
+    
+    print(f"Loaded {len(summaries)} summaries from {summaries_dir}")
+    return summaries
