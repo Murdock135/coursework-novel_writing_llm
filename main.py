@@ -22,15 +22,6 @@ def parse_args():
     parser.add_argument('--no-diversity', action='store_true', help='Disable scene diversity assessment')
     return parser.parse_args()
 
-def get_prompts_paths(config, diversity_assessor_enabled=True):
-    """Get paths to system prompts for the language models."""
-    prompts = {
-        'plot': config.plot_generator_prompt,
-        'scene': config.scene_writer_prompt,
-        'summary': config.scene_summary_generator_prompt,
-        'assessor': config.diversity_assessor_prompt if diversity_assessor_enabled else None
-    }
-    return prompts
 
 def initialize_llms(args):
     """Initialize language models based on command line arguments."""
@@ -40,22 +31,6 @@ def initialize_llms(args):
     diversity_assessor_llm = get_llm(args.provider, args.model) if not args.no_diversity else None
     
     return outliner_llm, scene_llm, summary_llm, diversity_assessor_llm
-
-def prepare_output_directories(config):
-    """Prepare output directories and clear existing content if needed."""
-    output_paths = {
-        'plot_outline': config.plot_outline_path,
-        'scenes': config.scenes_path,
-        'scene_summaries': config.scene_summaries_path,
-        'diversity_assessment': config.diversity_assessment_path,
-    }
-
-    # Clear existing scenes and summaries 
-    print("Clearing existing scenes and summaries...")
-    clear_directory(output_paths['scenes'])
-    clear_directory(output_paths['scene_summaries'])
-    
-    return output_paths
 
 if __name__ == "__main__":
     # Load environment variables
@@ -77,29 +52,11 @@ if __name__ == "__main__":
     
     # Initialize config
     config = Config()
+    output_paths_dict = config.get_output_paths()
+    prompt_paths_dict = config.load_prompts()
 
     # Initialize language models
     outliner_llm, scene_llm, summary_llm, diversity_assessor_llm = initialize_llms(args)
-    
-    # Load system prompt paths
-    prompt_paths = get_prompts_paths(config, diversity_assessor_enabled=not args.no_diversity)
-    
-    # Get novel metadata
-    novel_metadata = config.get_novel_metadata()
-    
-    # Prepare story path and output directories
-    story_path = config.story_description_path
-    output_paths = prepare_output_directories(config)
-    
-    # Run the novel pipeline
-    run_novel_pipeline(
-        story_description_path=story_path,
-        novel_metadata=novel_metadata,
-        outliner_llm=scene_llm,
-        scene_writer_llm=scene_llm,
-        summarizer_llm=summary_llm,
-        diversity_assessor_llm=diversity_assessor_llm,
-        prompt_paths_dict=prompt_paths, 
-        output_paths_dict=output_paths
-    )
+
+
 
