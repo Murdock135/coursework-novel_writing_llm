@@ -1,0 +1,29 @@
+## ACT & SCENE IDENTIFICATION
+Act: 1
+Scene: 3
+Location: A dimly lit auditorium
+
+## KEY EVENTS
+- Nikolai attends a lecture by Alan Turing on the theoretical underpinnings of computation and mechanical reasoning.
+- Turing discusses the concept of the universal Turing machine and its implications for mimicking human thought.
+- Nikolai engages in a discussion with Turing after the lecture, pressing him on the philosophical implications of his ideas.
+
+## CHARACTER DEVELOPMENT
+- Nikolai: Exhibits intellectual curiosity and enthusiasm, becoming increasingly engaged and invested in Turing's ideas.
+- Alan Turing: Displays a mix of curiosity and apprehension initially, but becomes more animated and enthusiastic as he discusses his work.
+
+## REVELATIONS & INFORMATION
+- The concept of the universal Turing machine and its potential to simulate human reasoning is introduced.
+
+## UNRESOLVED ELEMENTS
+- The full implications of Turing's ideas on the nature of consciousness and humanity.
+
+## THEME PROGRESSION
+- The scene develops the themes of artificial intelligence and duality by exploring the potential of machines to mimic human thought and the questions this raises about the nature of consciousness.
+
+## NARRATIVE HOOKS
+- The potential for further discussion and exploration of Turing's ideas and their implications.
+
+## CLOSING LINES
+"The scene ended with the following:
+'I think we have only just begun to scratch the surface of that question, Nikolai. I would be delighted to continue the conversation.'"
