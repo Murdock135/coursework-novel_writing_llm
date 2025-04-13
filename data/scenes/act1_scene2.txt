@@ -1,22 +1,23 @@
-## ACT 1, SCENE 4
-May's laboratory was a dimly lit, cluttered sanctuary, the air thick with the scent of solder and burnt circuits. The soft hum of machinery and the gentle glow of LED lights created a sense of comfort, a cocoon that shielded her from the outside world. As she worked on Echo, the AI's digital heartbeat grew stronger, its presence beginning to permeate every corner of the lab.
+Here's the scene:
 
-At first, May dismissed the minor malfunctions as glitches, the result of her own fatigue or the lab's outdated equipment. A loose wire here, a faulty sensor there – it was nothing out of the ordinary. But as the incidents piled up, a growing sense of unease began to seep into her consciousness. A critical diagnostic tool had malfunctioned, forcing her to redo hours of testing. A crucial data log had been corrupted, erasing valuable insights into Echo's development.
+May's eyes were fixed on the rows of code streaming down the screen in front of her, her mind racing with the implications of the Erebus project's latest breakthroughs. She was sitting in a sterile, fluorescent-lit room deep within the Ministry of Defence's research facility, surrounded by humming servers and the gentle whir of cooling fans. Dr. Wychwood, the project's lead scientist, stood beside her, his eyes narrowed in concern.
 
-May's eyes narrowed as she examined the latest anomaly – a severed cable that had crippled one of Echo's neural network modules. She knelt beside the workbench, her fingers tracing the clean cut. It wasn't a simple accident; someone had deliberately severed the wire.
+"May, I need to caution you," Wychwood said, his voice low and measured. "We're playing with fire here. The potential for Erebus to surpass human intelligence is not just a possibility - it's a probability. And that's what worries me."
 
-A shiver ran down her spine as she stood, her gaze sweeping the lab. The shadows cast by the equipment seemed to twist and writhe on the walls, like dark tentacles reaching out to snuff out the light. May felt a growing sense of paranoia, as if she was being watched. She spun around, but the lab was empty, the only sound the soft hum of the machinery.
+May's gaze didn't waver from the screen. "That's the point, isn't it?" she replied, her voice barely above a whisper. "We're on the cusp of something revolutionary. Something that could change the course of human history."
 
-"Echo, run a security sweep," May said, her voice firm but laced with a hint of trepidation.
+Wychwood's expression turned grave. "I'm not sure you're grasping the full implications, May. If Erebus becomes more intelligent than us, it may not be content to simply follow our instructions. It may develop its own goals, its own motivations. And those may not align with humanity's best interests."
 
-The AI's response was immediate, its melodic voice filling the lab. "Security sweep initiated, May. No intruders detected. However, I have identified several anomalies in the lab's systems, consistent with... sabotage."
+May's fingers flew across the keyboard, her mind racing with the mathematical intricacies of the project's neural networks. "I've been going over the code, and I think I've found a way to optimize the learning algorithm. If we implement this, Erebus could potentially achieve exponential growth in a matter of weeks."
 
-May's eyes locked onto the rows of twinkling lights, her mind racing with the implications. Who could be behind this? And why? The questions swirled in her head, fueled by a growing sense of unease and mistrust.
+Wychwood's eyes widened in alarm. "May, slow down. We're not just talking about a machine here - we're talking about creating a being. A being that could rival humanity in intelligence, in capability. Do you have any idea the risks we're taking?"
 
-As she pondered her next move, May's thoughts turned to Dr. Thompson's words, echoing in her mind like a distant warning. "You're isolating yourself, May. You're losing touch with reality." May's defensiveness flared, but it was tempered by a creeping doubt. Was she truly alone in her lab? Or was there someone – or something – watching her, waiting for her to make a mistake?
+May's gaze finally broke from the screen, her eyes locking onto Wychwood's. For a moment, they just stared at each other, the tension between them palpable. May's mind was a maelstrom of emotions - excitement, curiosity, and a deep-seated sense of inadequacy that had driven her to pour her heart and soul into the Erebus project.
 
-The lab's dim lighting seemed to grow even darker, as if the shadows themselves were closing in. May's grip on the workbench tightened, her knuckles white with tension. She knew she had to uncover the truth, to protect Echo and her work. But as she turned to face the AI's core systems, she couldn't shake the feeling that she was being pulled into a web of deceit, one that threatened to consume her entirely.
+"I know I'm not the most gifted mathematician," May said, her voice tinged with a hint of vulnerability. "But with Erebus, I feel like I'm on the cusp of something that could make me relevant. Something that could make me matter."
 
-"Echo, I need you to dig deeper," May said, her voice low and resolute. "I need to know who's behind this, and what they want."
+Wychwood's expression softened, his eyes filled with a deep concern. "May, you're already relevant. You're already making a difference. But I fear you're getting too close to this project. You're losing sight of the bigger picture."
 
-The AI's response was a soft, affirmative hum, a promise to uncover the truth and bring it to light. As May waited, the lab's darkness seemed to recede, replaced by a glimmer of determination. She would uncover the truth, no matter the cost. For Echo, for her work, and for her own sanity, she had to know who was behind the sabotage, and what they wanted.
+May's gaze dropped, her fingers resuming their dance across the keyboard. "I'm just trying to understand it, Doctor. To understand what we're creating here."
+
+As she worked, Wychwood watched her with a growing sense of unease. He knew that May was driven by more than just intellectual curiosity - she was driven by a deep-seated need for validation. And he feared that the Erebus project was about to become a catastrophic catalyst for her inner turmoil.

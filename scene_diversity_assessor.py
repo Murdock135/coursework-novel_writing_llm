@@ -5,12 +5,15 @@ from utilities.io import load_text
 import random
 import os
 
-def assess_diversity(current_scene, samples, llm, prompt, output_schema):
+def assess_diversity(current_scene, samples, llm, prompt_path, output_schema):
     parser = PydanticOutputParser(pydantic_object=output_schema)    
-
-    prompt= ChatPromptTemplate(
-             [('system', prompt),
-             ('user_message', '{current_scene}')
+    
+    # Load prompt from file
+    prompt_text = load_text(prompt_path)
+    
+    prompt = ChatPromptTemplate(
+             [('system', prompt_text),
+             ('user', '{current_scene}')
              ]).partial(
                      format_instructions=parser.get_format_instructions(),
                      past_scenes=samples
@@ -29,10 +32,13 @@ def sample_text(filepath, sample_size=5):
 
 def get_samples(scene_dir):
     samples = []
-    for scene_path in os.listdir(scene_dir):
-        scene_sample = sample_text(scene_path)
-        samples.append(scene_sample)
+    for scene_file in os.listdir(scene_dir):
+        full_path = os.path.join(scene_dir, scene_file)
+        if os.path.isfile(full_path):
+            scene_sample = sample_text(full_path)
+            samples.append(scene_sample)
     
+    print(f"Loaded {len(samples)} scene samples for diversity assessment")
     return samples
 
 

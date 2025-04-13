@@ -9,7 +9,7 @@ class Config:
     diversity_assessor_prompt = os.path.join(path_to_prompts, 'scene_diversity_assessor.txt')
     
     # path to story description
-    story_description = "data/story.txt"
+    story_description_path = "data/story.txt"
 
     # novel metadata
     genre = "historical fiction"
@@ -23,6 +23,7 @@ class Config:
     scene_summaries_path = 'data/scene_summaries'
     scenes_path = 'data/scenes'
     character_sheet_path = 'data/character_sheet.txt'
+    diversity_assessment_path = 'data/diversity_assessment.txt'
     
     # test output paths
     test_path = 'data/test'
@@ -31,6 +32,26 @@ class Config:
 
     # interaction settings
     use_interactive_decisions = False
+
+    def __init__(self):
+        # Ensure all necessary directories exist
+        self._ensure_directories_exist([
+            os.path.dirname(self.story_description_path),
+            os.path.dirname(self.plot_outline_path),
+            self.scene_summaries_path,
+            self.scenes_path,
+            os.path.dirname(self.character_sheet_path),
+            os.path.dirname(self.diversity_assessment_path),
+            self.test_path,
+            self.test_scenes_path,
+            self.test_summaries_path
+        ])
+
+    def _ensure_directories_exist(self, directories):
+        """Ensure that all directories in the list exist."""
+        for directory in directories:
+            full_path = os.path.join(self.project_dir, directory)
+            os.makedirs(full_path, exist_ok=True)
 
     def get_novel_metadata(self):
         return {

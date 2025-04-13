@@ -127,14 +127,14 @@ def format_context(docs: List[Document]) -> str:
     
     return "\n\n".join(context_parts)
 
-def get_relevant_context(scene_content: str, summaries_dir: str, 
+def get_relevant_context(scene_content: str, summaries: Dict[str, Document], 
                      embeddings=None, k: int = 3, diversity_factor: float = 0.5) -> str:
     """
     Retrieve scene context with a mix of relevant and diverse contexts.
     
     Args:
         scene_content: The content of the current scene 
-        summaries_dir: Directory to load summaries from
+        summaries: Dictionary of summaries mapping keys to Document objects
         embeddings: Optional embedding model (created if not provided)
         k: Total number of context scenes to return
         diversity_factor: Proportion of scenes that should be diverse (0.0-1.0)
@@ -146,8 +146,7 @@ def get_relevant_context(scene_content: str, summaries_dir: str,
     if embeddings is None:
         embeddings = create_embeddings()
         
-    # Load summaries from the directory
-    summaries = load_summaries(summaries_dir)
+    # Check if summaries are provided
     if not summaries:
         return ""
     
