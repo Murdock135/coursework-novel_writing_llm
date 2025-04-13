@@ -1,76 +1,59 @@
 import os
+import datetime
+import toml
 
 class Config:
-    project_dir = os.path.dirname(__file__)
-    path_to_prompts = os.path.join(os.path.abspath(project_dir), 'sys_messages')
-    plot_generator_prompt = os.path.join(path_to_prompts, 'plot_generator.txt')
-    scene_writer_prompt = os.path.join(path_to_prompts, 'scene_writer.txt')
-    scene_summary_generator_prompt = os.path.join(path_to_prompts, 'scene_summary_generator.txt')
-    diversity_assessor_prompt = os.path.join(path_to_prompts, 'scene_diversity_assessor.txt')
-    
-    # path to story description
-    story_description_path = "data/story.txt"
+    def __init__(self, test=False):
+        # Define project and data directories
+        self.project_dir = os.path.dirname(__file__)
+        self.data_dir = os.path.join(self.project_dir, 'data')
 
-    # novel metadata
-    genre = "historical fiction"
-    tone = "gloomy and analytical"
-    main_character = "May"
-    themes = ["betrayal", "existential crises", "illusion of the light at the end of the tunnel"]
-    authors_message = None
+        # Define novel directory (adjust for testing if needed)
+        time = datetime.datetime.now().strftime("%m-%d-%Y_%H-%M-%S")
+        self.novel_dir = os.path.join(self.data_dir, f"novel_{time}")
+        if test:
+            self.novel_dir = os.path.join(self.data_dir, f"test_novel_{time}")
 
-    # output paths
-    plot_outline_path = 'data/plot_outline.toml'
-    scene_summaries_path = 'data/scene_summaries'
-    scenes_path = 'data/scenes'
-    character_sheet_path = 'data/character_sheet.txt'
-    diversity_assessment_path = 'data/diversity_assessment.txt'
-    
-    # test output paths
-    test_path = 'data/test'
-    test_scenes_path = 'data/test/scenes'
-    test_summaries_path = 'data/test/summaries'
+        # Define paths
+        self.path_to_prompts = os.path.join(self.novel_dir, 'sys_messages')
+        self.path_to_output = os.path.join(self.novel_dir, 'output')
+        self.scene_summaries_path = os.path.join(self.path_to_output, 'scene_summaries')
+        self.scenes_path = os.path.join(self.path_to_output, 'scenes')
+        self.diversity_assessment_path = os.path.join(self.path_to_output, 'diversity_assessments')
+        self.novel_metadata_path = os.path.join(self.novel_dir, 'novel_metadata.toml')
 
-    # interaction settings
-    use_interactive_decisions = False
+        # Novel metadata
+        self.genre = "historical fiction"
+        self.tone = "gloomy and analytical"
+        self.main_character = "May"
+        self.themes = ["betrayal", "existential crises", "illusion of the light at the end of the tunnel"]
+        self.authors_message = None
 
-    def __init__(self):
-        # Ensure all necessary directories exist
-        self._ensure_directories_exist([
-            os.path.dirname(self.story_description_path),
-            os.path.dirname(self.plot_outline_path),
-            self.scene_summaries_path,
-            self.scenes_path,
-            os.path.dirname(self.character_sheet_path),
-            os.path.dirname(self.diversity_assessment_path),
-            self.test_path,
-            self.test_scenes_path,
-            self.test_summaries_path
-        ])
+        # Create necessary directories
+        self._create_directories()
 
-    def _ensure_directories_exist(self, directories):
-        """Ensure that all directories in the list exist."""
-        for directory in directories:
-            full_path = os.path.join(self.project_dir, directory)
-            os.makedirs(full_path, exist_ok=True)
+        # Generate a TOML file with novel metadata
+        self._save_novel_metadata()
 
-    def get_novel_metadata(self):
-        return {
+    def _create_directories(self):
+        """Create all required directories."""
+        os.makedirs(self.data_dir, exist_ok=True)
+        os.makedirs(self.novel_dir, exist_ok=True)
+        os.makedirs(self.path_to_prompts, exist_ok=True)
+        os.makedirs(self.path_to_output, exist_ok=True)
+        os.makedirs(self.scene_summaries_path, exist_ok=True)
+        os.makedirs(self.scenes_path, exist_ok=True)
+        os.makedirs(self.diversity_assessment_path, exist_ok=True)
+
+    def _save_novel_metadata(self):
+        """Save novel metadata to a TOML file."""
+        novel_metadata = {
             "genre": self.genre,
             "tone": self.tone,
             "main_character": self.main_character,
             "themes": self.themes,
-            "authors_message": self.authors_message
+            "authors_message": self.authors_message,
         }
-    
-    def get_scenes_dir(self):
-        """Get the full path to the scenes directory and ensure it exists."""
-        scenes_dir = os.path.join(self.project_dir, self.scenes_path)
-        os.makedirs(scenes_dir, exist_ok=True)
-        return scenes_dir
-    
-    def get_summaries_dir(self):
-        """Get the full path to the scene summaries directory and ensure it exists."""
-        summaries_dir = os.path.join(self.project_dir, self.scene_summaries_path)
-        os.makedirs(summaries_dir, exist_ok=True)
-        return summaries_dir
+        with open(self.novel_metadata_path, 'w') as f:
+            toml.dump(novel_metadata, f)
 
