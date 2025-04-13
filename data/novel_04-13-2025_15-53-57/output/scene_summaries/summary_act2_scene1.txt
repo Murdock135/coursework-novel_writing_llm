@@ -1,0 +1,31 @@
+## ACT & SCENE IDENTIFICATION
+Act: 1
+Scene: 1
+Location: Nikolai's small, cluttered apartment
+
+## KEY EVENTS
+- Nikolai works tirelessly on his AI project, Erebus, losing track of time.
+- He reflects on the dual nature of humanity and its relation to artificial intelligence.
+- Nikolai's thoughts are torn between the potential benefits and risks of creating an advanced AI.
+
+## CHARACTER DEVELOPMENT
+- Nikolai: Consumed by his research, feeling disconnected from the world outside, and torn between fascination and trepidation about his AI project.
+
+## REVELATIONS & INFORMATION
+- The AI system, Erebus, is designed to process vast amounts of data and make decisions with unprecedented speed and accuracy.
+- Nikolai is aware of the potential risks of Erebus becoming too intelligent or autonomous.
+
+## UNRESOLVED ELEMENTS
+- The outcome of Nikolai's work on Erebus and its potential impact on humanity.
+- The extent to which Nikolai's obsession will consume him.
+
+## THEME PROGRESSION
+- The duality theme is introduced through Nikolai's reflections on the similarities between human and artificial intelligence.
+- The artificial intelligence theme is explored through Nikolai's work on Erebus and his concerns about its potential.
+
+## NARRATIVE HOOKS
+- The potential risks and consequences of Erebus's development.
+- Nikolai's growing obsession and its impact on his life and relationships.
+
+## CLOSING LINES
+"As the night wore on, he remained lost in his work, a vessel for the conflicting desires that drove him: to create, to understand, and to control the uncontrollable."

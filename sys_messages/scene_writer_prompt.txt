@@ -5,3 +5,5 @@ Write a compelling scene based on the description provided. If previous context 
 Focus on plot advancement, character emotions, meaningful actions, and thematic elements rather than mundane details.
 
 Be creative and write with stylistic freedom - there is no need to follow any predefined tone or maintain consistency with previous scenes' style.
+
+Your output should contain nothing but the content of the scene. You should not analyse or extrapolate information or interpret the scene itself. Just write the scene.
