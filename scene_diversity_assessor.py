@@ -5,11 +5,8 @@ from utilities.io import load_text
 import random
 import os
 
-def assess_diversity(current_scene, samples, llm, prompt_path, output_schema):
+def assess_diversity(current_scene, samples, llm, prompt_text, output_schema):
     parser = PydanticOutputParser(pydantic_object=output_schema)    
-    
-    # Load prompt from file
-    prompt_text = load_text(prompt_path)
     
     prompt = ChatPromptTemplate(
              [('system', prompt_text),

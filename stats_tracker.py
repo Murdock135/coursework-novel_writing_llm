@@ -5,6 +5,7 @@ class StatsTracker:
         self.llm_call_count = 0
         self.scenes_processed = 0
         self.summaries_generated = 0
+        self.diversity_assessment_failures = 0
         self.errors = []
     
     def increment_llm_calls(self, count=1):
@@ -26,12 +27,18 @@ class StatsTracker:
         self.summaries_generated += 1
         return self.summaries_generated
     
+    def increment_diversity_assessment_failures(self):
+        """Increment the diversity assessment failures counter."""
+        self.diversity_assessment_failures += 1
+        return self.diversity_assessment_failures
+    
     def get_statistics(self):
         """Return a dictionary of all tracked statistics."""
         return {
             "llm_call_count": self.llm_call_count,
             "scenes_processed": self.scenes_processed,
             "summaries_generated": self.summaries_generated,
+            "diversity_assessment_failures": self.diversity_assessment_failures,
             "errors": self.errors
         }
     
@@ -41,6 +48,7 @@ class StatsTracker:
         print(f"- Total LLM calls: {self.llm_call_count}")
         print(f"- Scenes processed: {self.scenes_processed}")
         print(f"- Summaries generated: {self.summaries_generated}")
+        print(f"- Diversity assessment failures: {self.diversity_assessment_failures}")
         
         if self.errors:
             print("\nErrors encountered:")

@@ -6,6 +6,7 @@ from load_env import load_env_vars
 from config import Config
 from novel_pipeline import run_novel_pipeline
 from utilities.io import clear_directory
+from stats_tracker import StatsTracker
 
 def parse_args():
     """Parse command line arguments."""
@@ -20,6 +21,7 @@ def parse_args():
     parser.add_argument('-r', '--no-retrieval', action='store_true', help='Disable semantic retrieval of previous scene context')
     parser.add_argument('-e', '--embedding-model', default=None, help='Model to use for embeddings (if using retrieval)')
     parser.add_argument('--no-diversity', action='store_true', help='Disable scene diversity assessment')
+    parser.add_argument('--no-stats', action='store_true', help='Disable statistics tracking')
     return parser.parse_args()
 
 
@@ -39,6 +41,9 @@ if __name__ == "__main__":
     # Parse command line arguments
     args = parse_args()
     
+    # Initialize stats tracker
+    stats_tracker = None if args.no_stats else StatsTracker()
+    
     # If outline only, simply run novel outliner
     if args.outline_only:
         print("Outline-only mode specified. Running novel_outliner.py...")
@@ -53,10 +58,24 @@ if __name__ == "__main__":
     # Initialize config
     config = Config()
     output_paths_dict = config.get_output_paths()
-    prompt_paths_dict = config.load_prompts()
+    prompts_dict = config.load_prompts()
 
     # Initialize language models
     outliner_llm, scene_llm, summary_llm, diversity_assessor_llm = initialize_llms(args)
 
-
+    run_novel_pipeline(
+        config.novel_metadata,
+        outliner_llm,
+        scene_llm,
+        summary_llm,
+        diversity_assessor_llm,
+        prompts_dict,
+        output_paths_dict,
+        max_retries=3,
+        stats_tracker=stats_tracker,
+    )
+    
+    # Print statistics if tracking is enabled
+    if stats_tracker:
+        stats_tracker.print_statistics()
 

@@ -16,6 +16,7 @@ def generate_outline(
     stats_tracker: StatsTracker = None
 ) -> NovelOutline:
     """Generate the novel outline using the specified prompt and story."""
+    
     # Load story description
     try:
         story_desc = novel_metadata.get('story_description', None)
