@@ -16,8 +16,9 @@ def run_novel_pipeline(
         max_retries=3,  # Add max_retries as a parameter
         stats_tracker=None,
 ):
+    print("Generating novel outline...")
     outline: NovelOutline = generate_outline(outliner_llm, prompts_dict['outliner_prompt'], novel_metadata, None if stats_tracker is None else stats_tracker)
-    outline.format_readable()
+    print(outline.format_readable())
     stats_tracker.increment_llm_calls() if stats_tracker else None
 
     print(50 * "=")

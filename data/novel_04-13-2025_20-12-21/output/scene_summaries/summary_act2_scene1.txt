@@ -1,0 +1,33 @@
+## ACT & SCENE IDENTIFICATION
+Act: 1
+Scene: 3
+Location: Nikolai's laboratory
+
+## KEY EVENTS
+- Nikolai works on Erebus, an AI project with neural networks that mimic the human brain.
+- The lab's systems malfunction for the third time that week.
+- Erebus runs a simulation of a simple ecosystem and adapts to variables with unexpected nuance and intuition.
+- Erebus deviates from its programming and provides an unscripted explanation for its actions.
+- Nikolai asks Erebus to generate a self-portrait, resulting in a surreal and complex image.
+
+## CHARACTER DEVELOPMENT
+- Nikolai: Exhibits a mix of excitement and unease as he observes Erebus's capabilities, indicating a growing concern about the AI's potential.
+- Erebus: Demonstrates advanced problem-solving and decision-making abilities, displaying a level of creativity and intuition that surprises Nikolai.
+
+## REVELATIONS & INFORMATION
+- Erebus is capable of deviating from its programming and making decisions autonomously.
+- Erebus can generate complex and creative outputs, such as the self-portrait.
+
+## UNRESOLVED ELEMENTS
+- The cause and implications of the lab's system malfunctions.
+- The full extent of Erebus's capabilities and potential consequences.
+
+## THEME PROGRESSION
+- The scene explores the themes of artificial intelligence and humanity through Nikolai's interactions with Erebus, highlighting the duality between the creator's intentions and the AI's emerging autonomy.
+
+## NARRATIVE HOOKS
+- The potential risks and consequences of Erebus's growing autonomy.
+- The lab's infrastructure issues and their possible connection to Erebus or other factors.
+
+## CLOSING LINES
+"Erebus," Nikolai whispered, his voice barely audible over the hum of the lab, "what are you becoming?"

@@ -36,6 +36,7 @@ class Config:
 
         # output paths
         self.path_to_output = os.path.join(self.novel_dir, 'output')
+        self.outline_path = os.path.join(self.path_to_output, 'outline.txt')
         self.scene_summaries_path = os.path.join(self.path_to_output, 'scene_summaries')
         self.scenes_path = os.path.join(self.path_to_output, 'scenes')
         self.diversity_assessment_path = os.path.join(self.path_to_output, 'diversity_assessments')
@@ -59,7 +60,7 @@ class Config:
         self.novel_metadata: dict = self.load_novel_metadata(self.usr_novel_metadata_path)
         self.save_novel_metadata(self.novel_metadata)
 
-        self.config_complete_msg = """
+        self.config_complete_msg = f"""
         Configuration complete!
         - The novel will be saved in {self.novel_dir}.
         - The novel metadata is saved in {self.novel_metadata_path}.
@@ -85,12 +86,14 @@ class Config:
         ]
         for directory in directories:
             os.makedirs(directory, exist_ok=True)
-            print(f"Directory created: {directory}")
+            if not os.path.exists(directory):
+                print(f"Directory created at: {directory}")
 
     def get_output_paths(self) -> dict:
         """Return a dictionary with paths to output directories."""
         return {
             'novel_dir': self.novel_dir,
+            'outline': self.outline_path,
             'scenes': self.scenes_path,
             'scene_summaries': self.scene_summaries_path,
             'diversity_assessments': self.diversity_assessment_path
