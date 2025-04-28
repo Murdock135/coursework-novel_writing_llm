@@ -3,11 +3,12 @@ import os
 import random
 import numpy as np
 from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_ollama import OllamaEmbeddings
 from langchain_core.documents import Document
 from utilities.io import load_summaries
 
-def create_embeddings(provider: str = "ollama", model_name: str = None):
+def create_embeddings(provider: str = "langchain", model_name: str = "text-embedding-3-large") -> Any:
     """
     Create an embeddings model for vectorizing scene content.
     
@@ -18,8 +19,16 @@ def create_embeddings(provider: str = "ollama", model_name: str = None):
     Returns:
         Embeddings model
     """
-    # Use llama3.2:latest as the default model for embeddings
-    return OllamaEmbeddings(model=model_name or "llama3.2:latest")
+    if provider.lower() != "langchain":
+        raise ValueError("Only 'langchain' provider is supported")
+    
+    if model_name.lower() != "text-embedding-3-large":
+        raise ValueError("Only 'text-embedding-3-large' model is supported")
+    else:
+        # Use OpenAIEmbeddings for the specified model
+        print(f"Using OpenAIEmbeddings with model: {model_name}")
+
+        return OpenAIEmbeddings(model=model_name)
 
 def create_vector_store(summaries_dict: Dict[str, Document], embeddings):
     """

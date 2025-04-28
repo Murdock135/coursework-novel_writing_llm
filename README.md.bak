@@ -1,0 +1,106 @@
+# Novel Writer LLM
+
+A modular pipeline for generating complete novels using language models.
+
+## Overview
+
+This project provides an automated pipeline for generating novels following a three-act structure. It uses language models to:
+
+1. Generate a structured outline based on a story concept
+2. Write individual scenes based on the outline with context awareness
+3. Generate summaries for each scene
+4. Assess scene diversity and suggest improvements
+5. Compile the novel with proper organization
+
+## Features
+
+- Flexible configuration through `config.py` and `novel_metadata.toml`
+- Support for multiple LLM providers (OpenRouter, Ollama)
+- Three-act structure with modular scene generation
+- Structured output formats using Pydantic models
+- Vector-based retrieval system using FAISS for context-aware writing
+- Diversity assessment system for improving narrative quality
+- Versioned novel directories with timestamps
+- Progress tracking and error handling
+- Scene and summary file organization
+- Statistics tracking for pipeline execution
+
+## Requirements
+
+- Python 3.8+
+- Dependencies listed in `requirements.txt`
+- API keys for language model providers
+
+## Setup
+
+1. Clone the repository
+2. Install dependencies: `pip install -r requirements.txt`
+3. Set up environment variables for API keys
+   - `OPENROUTER_API_KEY`
+   - `OPENROUTER_BASE_URL`
+   - If using Ollama, ensure it's running locally
+
+## Usage
+
+Run the full pipeline:
+
+```bash
+python main.py
+```
+
+Command-line options:
+- `-p, --provider`: LLM provider (default: openrouter)
+- `-m, --model`: Model name to use (default: meta-llama/llama-4-maverick:free)
+- `-s, --summary-model`: Model for scene summarization
+- `-o, --outline-only`: Generate only the outline without writing scenes
+- `-r, --no-retrieval`: Disable vector-based retrieval for context
+- `-e, --embedding-model`: Choose embedding model for retrieval
+- `--no-diversity`: Disable diversity assessment
+- `--no-stats`: Disable statistics tracking
+
+Test with a specified number of acts:
+
+```bash
+python test_one_act.py --acts 2
+```
+
+Test outputs are saved to separate directories for analysis.
+
+## Configuration
+
+Edit `novel_metadata.toml` to customize your novel:
+- Story description
+- Genre and tone
+- Main character name
+- Themes
+- Optional author's message
+
+Additional settings are in `config.py`:
+- File paths for prompts and outputs
+- Default provider settings
+- Model configurations
+
+## Project Structure
+
+- `main.py`: Entry point and pipeline orchestration
+- `novel_pipeline.py`: Core pipeline implementation
+- `novel_outliner.py`: Generates structured novel outline
+- `scene_writer.py`: Writes individual scenes
+- `scene_summary_generator.py`: Creates summaries of scenes
+- `scene_diversity_assessor.py`: Evaluates and improves scene diversity
+- `stats_tracker.py`: Tracks performance and completion metrics
+- `config.py`: Configuration settings
+- `llm_config.py`: Language model provider configuration
+- `output_schemas.py`: Pydantic data models
+- `utilities/`: Helper functions and tools
+  - `io.py`: File operations
+  - `prompt_utils.py`: Prompt template utilities
+  - `retrieval.py`: Vector-based context retrieval
+  - `check_rate_limit.py`: API rate limit monitoring
+- `sys_messages/`: System prompts for LLMs
+- `data/`: Input and output storage
+  - `novel_[timestamp]/`: Versioned novel directories
+    - `output/scenes/`: Generated scene content
+    - `output/scene_summaries/`: Summaries for each scene
+    - `output/diversity_assessments/`: Diversity evaluations
+  - `test/`: Test output storage

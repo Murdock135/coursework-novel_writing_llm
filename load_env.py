@@ -12,3 +12,4 @@ def load_env_vars():
 if __name__=="__main__":
     load_env_vars()
     print(os.getenv("OPENROUTER_API"))
+    print(os.getenv("OPENAI_API_KEY"))
